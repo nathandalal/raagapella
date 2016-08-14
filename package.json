@@ -10,7 +10,8 @@
     "webpack": "./node_modules/.bin/webpack --colors",
     "webpack-watch": "./node_modules/.bin/webpack -w --colors",
     "dev": "concurrently --kill-others \"npm run webpack-watch\" \"npm run express-dev-server\"",
-    "start": "npm run webpack && npm run express-server",
+    "build": "npm run webpack",
+    "start": "npm run express-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
