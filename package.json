@@ -11,7 +11,7 @@
     "webpack-watch": "./node_modules/.bin/webpack -w --colors",
     "dev": "concurrently --kill-others \"npm run webpack-watch\" \"npm run express-dev-server\"",
     "start": "npm run webpack && npm run express-server",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "axios": "^0.12.0",
