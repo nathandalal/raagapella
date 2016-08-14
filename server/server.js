@@ -4,7 +4,7 @@ import http from 'http'
 import apiRoutes from './api/index'
 
 const app = express()
-const port = 7777
+const port = process.env.PORT || 7777
 
 app.use('/api', apiRoutes)
 
