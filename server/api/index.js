@@ -6,7 +6,8 @@ import env from './env'
 import MongoHandler from './mongo/handler'
 
 var availableRoutes = [
-    '/lol'
+    '/auditions',
+    '/auditions/:id'
 ]
 
 router.get('/', (req, res) => {
@@ -22,6 +23,10 @@ const badUserRequestError =
 
 //api available request routes and responses
 router.get(availableRoutes[0], (req, res) => {
+    return res.send({ text: 'Say hello to the API world!' })
+})
+
+router.get(availableRoutes[1], (req, res) => {
     return res.send({ text: 'Say hello to the API world!' })
 })
 

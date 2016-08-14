@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import Header from './header'
 
 import { Link } from 'react-router'
+import axios from 'axios'
+
+import Header from './header'
 
 export default class Auditions extends Component {
 	constructor(props) {

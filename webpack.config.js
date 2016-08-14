@@ -1,5 +1,3 @@
-var path = require('path')
-
 module.exports = {
     entry: './client/index.js',
     output: {
@@ -10,7 +8,8 @@ module.exports = {
         loaders: [
             {
                 test: /.js$/,
-                loader: 'babel'
+                loader: 'babel',
+                exclude: /node_modules/
             }
         ]
     }

@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+import { Link } from 'react-router'
+
 import Header from './header'
 import roster from '../utils/roster'
 
@@ -17,7 +20,7 @@ export default class Homepage extends Component {
 		      		</h2>
 		      		<center>
 			      		<div className="video-container">
-			      			<iframe width="560" height="315" src="https://www.youtube.com/embed/2jdosaY897w" frameborder="0" allowFullScreen />
+			      			<iframe width="560" height="315" src="https://www.youtube.com/embed/2jdosaY897w" frameBorder="0" allowFullScreen />
 			      		</div>
 		      		</center>
 		    	</div>
@@ -52,7 +55,7 @@ export default class Homepage extends Component {
 	      			<div style={{marginTop:'1em'}}></div>
 	      			<div className="row">
 	      			{roster.map(person => (
-	        			<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+	        			<div key={person.name} className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 		          			<img src={`/images/people/${person.name.split(" ").join("-").toLowerCase()}.jpg`} className="img img-responsive" />
 		          			<div className="text-center">
 			            		<h4 style={{marginBottom:0}}>
@@ -61,8 +64,8 @@ export default class Homepage extends Component {
 			            		<p style={{margin:0}}>
 			              			{person.position ? <span>{person.position}<br /></span> : ""}
 			             			{person.section} {person.sectionLeader ? "Section Leader" : ""}
-			             			<div style={{marginTop:'1em'}}></div>
 			            		</p>
+			            		<div style={{marginTop:'1em'}}></div>
 		          			</div>
 		        		</div>
 	        		))}
@@ -72,10 +75,22 @@ export default class Homepage extends Component {
 		)
 	}
 
+	renderAuditionsAreLive() {
+		return (
+			<div className="alert alert-success text-center">
+				<h4 style={{marginBottom:0}}>
+				<span style={{paddingRight:"4px"}}>Auditions are now open for 2016!</span>
+				<Link to="/auditions">Sign up here.</Link>
+				</h4>
+			</div>
+		)
+	}
+
 	render() {
 		return (
 			<div>
 				<Header />
+				
 				<div className="container">
 					{this.renderYoutubeVideo()}
 					<hr />

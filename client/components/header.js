@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const Header = (props) => (
 	<div className="row" style={{backgroundColor:"black",color:"white"}}>
@@ -21,9 +22,9 @@ const Header = (props) => (
 			</center>
 		</div>
 		<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-			<a href="/">
+			<Link to="/">
 				<img src="/images/logo.png" className="img img-responsive"/>
-			</a>
+			</Link>
 		</div>
 		<div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 			<center>
