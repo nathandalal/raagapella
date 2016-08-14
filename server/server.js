@@ -1,4 +1,5 @@
 import express from 'express'
+import favicon from 'serve-favicon'
 import http from 'http'
 
 import apiRoutes from './api/index'
@@ -8,6 +9,7 @@ const port = process.env.PORT || 7777
 
 app.use('/api', apiRoutes)
 
+app.use(favicon(__dirname + '/public/favicon.ico'))
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
