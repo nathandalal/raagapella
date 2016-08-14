@@ -1,0 +1,37 @@
+{
+  "name": "raagapella",
+  "version": "0.0.1",
+  "description": "Website for Stanford Raagapella, Stanford's South Asian A Cappella Group",
+  "private": "true",
+  "main": "server.js",
+  "scripts": {
+    "express-server": "./node_modules/.bin/babel-node server/server.js",
+    "express-dev-server": "./node_modules/.bin/babel-watch server/server.js",
+    "webpack": "./node_modules/.bin/webpack --colors",
+    "webpack-watch": "./node_modules/.bin/webpack -w --colors",
+    "dev": "concurrently --kill-others \"npm run webpack-watch\" \"npm run express-dev-server\"",
+    "start": "npm run webpack && npm run express-server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+  },
+  "dependencies": {
+    "axios": "^0.12.0",
+    "babel-preset-stage-2": "^6.13.0",
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.5",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.5.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.0",
+    "babel-watch": "^2.0.2",
+    "concurrently": "^2.1.0",
+    "dotenv": "^2.0.0",
+    "webpack": "^1.13.1"
+  }
+}
