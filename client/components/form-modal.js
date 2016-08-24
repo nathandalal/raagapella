@@ -68,8 +68,10 @@ export default class FormModal extends Component {
 
 				{this.props.type == "callback" ? "Please enter in your information exactly as you did for your audition." : ""}
 				{this.state.errorText || this.state.failure ? 
-				<div className="alert alert-warning">
-					{this.state.failure ? "Form submission failed. Please verify your entries or try again later." : <span><strong>Form Error: </strong>{this.state.errorText}</span>}
+				<div className={`alert alert-${this.state.failure ? "danger" : "warning"}`}>
+					{this.state.failure ? 
+					`Form submission failed!${this.props.type == "callback" ? " You may be unauthorized. " : " "}Please verify your entries or try again later.` : 
+					<span><strong>Form Validation Error: </strong>{this.state.errorText}</span>}
 				</div> : ""}
 
 		  		<FieldGroup

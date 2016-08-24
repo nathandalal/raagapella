@@ -45,13 +45,22 @@ module.exports.registerAudition = (auditionid, name, email, references) => new P
 	.catch(reject)
 })
 
-module.exports.registerCallback = (auditionid, name, email) => new Promise((resolve, reject) => {
-	base('Callbacks').select({
-    	view: "Main View"
-	}).firstPage((error, records) => {
-		if(error) reject(error)
-	    resolve(records.map(record => record._rawJson))
+module.exports.registerCallback = (callbackid, name, email) => new Promise((resolve, reject) => {
+	verifyPerson(name, email)
+	.then(person => {
+		if(!person) reject("Unauthorized to sign up for a callback.")
+		return Promise.all([
+			person,
+			addPersonToBase('Callbacks', callbackid, person.id)
+		])
 	})
+	.then(airtabledone => {
+		let person = airtabledone[0].fields, callback = airtabledone[1].fields
+		SlackHandler.write(`*${person['Name']}* (_${person["Email"]}_) just signed up for a callback.`)
+		MailgunHandler.send(person, callback, 'callback')
+		return resolve(callback)
+	})
+	.catch(reject)
 })
 
 let addPersonToBase = (basename, recordid, personid) => new Promise((resolve, reject) => {
@@ -76,3 +85,12 @@ let createPerson = (name, email, references) => new Promise((resolve, reject) =>
 	})
 })
 
+let verifyPerson = (name, email) => new Promise((resolve, reject) => {
+	base('People').select({
+    	view: "Main View"
+	}).firstPage((error, records) => {
+		if(error) resolve(false)
+	    let allpeople = records.map(record => record._rawJson)
+		resolve(allpeople.find(person => person.fields["Name"] == name && person.fields["Email"] == email && person.fields["Call Them Back?"]))
+	})
+})

@@ -63684,14 +63684,14 @@
 						this.props.type == "callback" ? "Please enter in your information exactly as you did for your audition." : "",
 						this.state.errorText || this.state.failure ? _react2.default.createElement(
 							'div',
-							{ className: 'alert alert-warning' },
-							this.state.failure ? "Form submission failed. Please verify your entries or try again later." : _react2.default.createElement(
+							{ className: 'alert alert-' + (this.state.failure ? "danger" : "warning") },
+							this.state.failure ? 'Form submission failed!' + (this.props.type == "callback" ? " You may be unauthorized. " : " ") + 'Please verify your entries or try again later.' : _react2.default.createElement(
 								'span',
 								null,
 								_react2.default.createElement(
 									'strong',
 									null,
-									'Form Error: '
+									'Form Validation Error: '
 								),
 								this.state.errorText
 							)
@@ -63834,7 +63834,7 @@
 			value: function renderSignup() {
 				var _this2 = this;
 
-				if ((0, _moment2.default)().isBefore('2016-09-29')) return "Check back later for callbacks!";
+				//if(moment().isBefore('2016-09-29')) return "Check back later for callbacks!"
 				return _react2.default.createElement(
 					'div',
 					null,

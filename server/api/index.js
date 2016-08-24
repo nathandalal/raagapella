@@ -48,9 +48,10 @@ router.get(availableRoutes[1], (req, res) => {
 
 router.put(availableRoutes[1], (req, res) => {
     if (!(req.body) || Object.keys(req.body).length == 0) 
-        return ErrorResponse.badUserRequestError(res, availableRoutes[1], "Empty PUT request")
-    console.log(req.body)
-    return res.send({ text: 'Say hello to the API world!' })
+        return ErrorResponse.badUserRequestError(res, availableRoutes[0], "Empty PUT request")
+    AirtableHandler.registerCallback(req.body.id, req.body.name, req.body.email)
+    .then(callbackObject => res.send(callbackObject))
+    .catch(e => internalServerError(res, e))
 })
 
 //nothing matched our api requests, return 404
