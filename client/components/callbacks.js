@@ -32,7 +32,7 @@ export default class Callbacks extends Component {
 	}
 
 	renderSignup() {
-		//if(moment().isBefore('2016-09-29')) return "Check back later for callbacks!"
+		if(moment().isBefore('2016-09-29')) return "Check back later for callbacks!"
 		return (
 			<div>
 				<Table striped bordered condensed hover>
