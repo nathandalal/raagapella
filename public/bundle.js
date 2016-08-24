@@ -63834,7 +63834,7 @@
 			value: function renderSignup() {
 				var _this2 = this;
 
-				//if(moment().isBefore('2016-09-29')) return "Check back later for callbacks!"
+				if ((0, _moment2.default)().isBefore('2016-09-29')) return "Check back later for callbacks!";
 				return _react2.default.createElement(
 					'div',
 					null,
