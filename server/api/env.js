@@ -3,12 +3,15 @@ module.exports = {
 	MONGO: {
 		URL: process.env.MONGODB_URI || "mongodb://localhost/raagapella-dev"
 	},
-	GOOGLE: {
-		FIREBASE: {
-			apiKey: process.env.FIREBASE_API_KEY,
-		    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-		    databaseURL: process.env.FIREBASE_DATABASE_URL,
-		    storageBucket: process.env.FIREBASE_STORAGE_BUCKET
-		}
+	AIRTABLE: {
+		API_KEY: process.env.AIRTABLE_API_KEY,
+		BASE: process.env.AIRTABLE_BASE
+	},
+	SLACK: {
+		WEBHOOK: process.env.SLACK_WEBHOOK
+	},
+	MAILGUN: {
+		API_KEY: process.env.MAILGUN_API_KEY,
+		DOMAIN: process.env.MAILGUN_DOMAIN
 	}
 }

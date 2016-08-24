@@ -10,7 +10,7 @@ import moment from 'moment'
 import Header from './header'
 import FormModal from './form-modal'
 
-export default class Auditions extends Component {
+export default class Callbacks extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -19,11 +19,11 @@ export default class Auditions extends Component {
 
 			//form modal data
 			name: "",
-			email: "",
-			references: []
+			email: ""
 		}
-		axios.get('/api/auditions').then(response => {
+		axios.get('/api/callbacks').then(response => {
 			this.setState({ slots: response.data })
+
 		})
 	}
 
@@ -32,6 +32,7 @@ export default class Auditions extends Component {
 	}
 
 	renderSignup() {
+		if(moment().isBefore('2016-09-29')) return "Check back later for callbacks!"
 		return (
 			<div>
 				<Table striped bordered condensed hover>
@@ -75,7 +76,7 @@ export default class Auditions extends Component {
 	changeName(event) { this.setState({name:event.target.value})}
 	changeEmail(event) { this.setState({email:event.target.value})}
 	changeReferences(values) { this.setState({references:values}) }
-	notifyFormSuccess() { this.setState({formSuccess:true,name:"",email:'',references:[]})}
+	notifyFormSuccess() { this.setState({formSuccess:true,name:"",email:''})}
 
 	render() {
 		let modalClose = () => this.setState({ modalShow: false })
@@ -87,7 +88,7 @@ export default class Auditions extends Component {
 					<div style={{marginTop:'1em'}}></div>
 			    	<div className="col-md-8 col-md-offset-2">
 			      		<h1 className="text-center">
-			        		Auditions
+			        		Callbacks
 			      		</h1>
 			      		<center>
 			      		{this.state.formSuccess? 
@@ -98,7 +99,7 @@ export default class Auditions extends Component {
 			      			<div>
 			      				{this.state.slots ? 
 			      				this.renderSignup() :
-			      				<span>Loading audition timeslots...</span>}
+			      				<span>Loading callback timeslots...</span>}
 			      			</div>
 			      		</center>
 			    	</div>
@@ -106,10 +107,10 @@ export default class Auditions extends Component {
 			  	<FormModal 
 			  		show={this.state.modalShow} onHide={modalClose} 
 			  		currentSlot={this.state.slots ? this.state.slots.find(x => x.id == this.state.selectedId) : undefined}
-			  		name={this.state.name} email={this.state.email} references={this.state.references}
-			  		changeName={this.changeName.bind(this)} changeEmail={this.changeEmail.bind(this)} changeReferences={this.changeReferences.bind(this)}
+			  		name={this.state.name} email={this.state.email}
+			  		changeName={this.changeName.bind(this)} changeEmail={this.changeEmail.bind(this)}
 			  		notifyFormSuccess={this.notifyFormSuccess.bind(this)}
-			  		type="audition" />
+			  		type="callback" />
 			</div>
 		)
 	}

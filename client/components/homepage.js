@@ -90,7 +90,7 @@ export default class Homepage extends Component {
 		return (
 			<div>
 				<Header />
-				
+				{this.renderAuditionsAreLive()}
 				<div className="container">
 					{this.renderYoutubeVideo()}
 					<hr />
