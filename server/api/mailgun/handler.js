@@ -34,7 +34,8 @@ module.exports.send = (person, event, type) => {
 			name: 'Stanford Raagapella',
 			email: 'business@raagapella.com'
 		}
-	};
+	}
+
 	ical.createEvent(options, null, (err, filepath) => {
 		if(err) console.error(err)
 		var data = {
@@ -42,31 +43,53 @@ module.exports.send = (person, event, type) => {
 			to: `${person["Name"]} <${person["Email"]}>`,
 			subject: `Confirming Your Raagapella ${type[0].toUpperCase() + type.slice(1)} on ${date} at ${time}`,
 			text: `Hey ${person['Name'].substr(0,person["Name"].indexOf(' '))}!\n\n` +
+
 					`Your ${type} is confirmed for ${date} at ${time}.\n\n` +
 					`We'll meet you at ${event["Location"]}.\n` +
-					`A Google Maps link is here for your convenience: ${event["Google Maps Location"]}\n` +
-					`If you get lost, you can call Nathan Dalal at (510) 574-6653 for directions.\n\n` +
+					`A Google Maps link is here for your convenience: ${event["Google Maps Location"]}\n\n` +
+
 					(type == "audition" ? "Also, before your audition, please let us know a little more about you at this link: http://bit.ly/RaagapellaAuditionInfo2016\n\n" : "") +
-					`We've included a calendar event attachment so you don't forget your ${type}.\nIf you have any other questions, contact Ronald Tep (cc'ed).\n\n` +
+
+					`We've included a calendar event attachment so you don't forget your ${type}.\n` +
+					`If you have any other questions, you can contact:\n` +
+					`	• Ronald Tep → (864) 202-2733 (email cc'ed)\n` +
+					`	• Nathan Dalal → (510) 574-6653 (email cc'ed)\n\n` +
+
 					`Looking forward to seeing you!\n` +
 					`Stanford Raagapella`,
+
 			html: `<h3>Hey ${person['Name'].substr(0,person["Name"].indexOf(' '))}!</h3>` +
-					`Your ${type} is confirmed for <strong>${date}</strong> at <strong>${time}</strong>.<br><br>` +
-					`We'll meet you at ${event["Location"]}. Here's a <a href="${event["Google Maps Location"]}">Google Maps link</a>.<br>` +
-					`If you get lost, you can call Nathan Dalal at (510) 574-6653 for directions.` +
-					"<br><br>" + 
-					(type == "audition" ? `Also, before your audition, please let us know a little more about you <a href="http://bit.ly/RaagapellaAuditionInfo2016">at this link</a>.<br><br>` : "") +
-					`We've included a calendar event attachment so you don't forget your ${type}.<br>If you have any other questions, contact Ronald Tep (cc'ed).<br><br>Looking forward to seeing you!<br>` +
+
+					`<h4>${type[0].toUpperCase() + type.slice(1)} Details</h4>` +
+					`<p>` +
+						`Your ${type} is confirmed for <strong>${date}</strong> at <strong>${time}</strong>.<br>` +
+						`We'll meet you at ${event["Location"]}. Here's a <a href="${event["Google Maps Location"]}">Google Maps link</a>.` +
+						"<br><br>" + 
+
+						(type == "audition" ? `Also, before your audition, please let us know a little more about you <a href="http://bit.ly/RaagapellaAuditionInfo2016">at this link</a>.` : "") +
+					`</p>` +
+
+					`<h4>Other Logistics</h4>` +
+					`<p>` +
+						`We've included a calendar event attachment so you don't forget your ${type}.<br>` +
+						`If you have any other questions, you can contact:<br>` +
+					`</p>` +
+					`<ul>` + 
+						`<li>Ronald Tep → (864) 202-2733 (email cc'ed)</li>` +
+						`<li>Nathan Dalal → (510) 574-6653 (email cc'ed)</li>` +
+					`</ul>` +
+
+					`Looking forward to seeing you!<br>` +
 					`Stanford Raagapella`,
-			attachment: filepath
+			attachment: filepath,
+			cc: ["Nathan Dalal <nathanhd@stanford.edu>"]
 		}
-		if(process.env.NODE_ENV == "production") data['cc'] = "Ronald Tep <rtep@stanford.edu>"
-		else data['cc'] = "Nathan Dalal <nathanhd@stanford.edu>"
+		if(process.env.NODE_ENV == 'production') data.cc.push("Ronald Tep <rtep@stanford.edu>")
 
 		mailgun.messages().send(data, function (error, body) {
 			if(error) {
 				console.error(error)
-				return SlackHandler.write(`Error writing email to *${person["Name"]}* (_${person["Email"]}_). When this happens, my overlord tells me to bring @ronaldtep in to resolve the problem.`)
+				return SlackHandler.write(`Error writing email to *${person["Name"]}* (_${person["Email"]}_). When this happens, my overlord tells me to bring <@U0BFHB2RL> and <@U0BGMJK0F> in to resolve the problem.`)
 			}
 			console.log(body)
 		})
