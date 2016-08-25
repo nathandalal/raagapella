@@ -24,7 +24,26 @@ module.exports.getCallbacks = () => new Promise((resolve, reject) => {
 })
 
 module.exports.registerAudition = (auditionid, name, email, references) => new Promise((resolve, reject) => {
-	createPerson(name, email, references)
+	console.log(`Registering ${name} (${email}) for an audition.`)
+	checkIfPersonExists(name, email)
+	.then(person => {
+		if(person) {
+			console.log("Person already exists in Airtable.")
+			return reject({errorString: "You have already registered to sign up for an audition."})
+		} else {
+			console.log("Verified that person is not already in database.")
+			return MailgunHandler.validate(email)
+		}
+	})
+	.then(verified => {
+		if(!verified) {
+			console.log(`Person did not specify valid email address: ${email}.`)	
+			return reject({errorString: "Please enter a valid email address."})
+		} else { 
+			console.log("Email address is valid, now adding person to Airtable.")
+			return createPerson(name, email, references)
+		}
+	})
 	.then(person => {
 		return Promise.all([
 			person,
@@ -32,6 +51,7 @@ module.exports.registerAudition = (auditionid, name, email, references) => new P
 		])
 	})
 	.then(airtabledone => {
+		console.log("Person added to airtable, now sending email confirmation and Slack confirmation message.")
 		let person = airtabledone[0].fields, audition = airtabledone[1].fields
 		SlackHandler.write(
 			`*${person['Name']}* (_${person["Email"]}_) just signed up for an audition!\n` + 
@@ -48,7 +68,7 @@ module.exports.registerAudition = (auditionid, name, email, references) => new P
 module.exports.registerCallback = (callbackid, name, email) => new Promise((resolve, reject) => {
 	verifyPerson(name, email)
 	.then(person => {
-		if(!person) reject("Unauthorized to sign up for a callback.")
+		if(!person) reject({errorString: "Unauthorized to sign up for a callback."})
 		return Promise.all([
 			person,
 			addPersonToBase('Callbacks', callbackid, person.id)
@@ -92,5 +112,15 @@ let verifyPerson = (name, email) => new Promise((resolve, reject) => {
 		if(error) resolve(false)
 	    let allpeople = records.map(record => record._rawJson)
 		resolve(allpeople.find(person => person.fields["Name"] == name && person.fields["Email"] == email && person.fields["Call Them Back?"]))
+	})
+})
+
+let checkIfPersonExists = (name, email) => new Promise((resolve, reject) => {
+	base('People').select({
+    	view: "Main View"
+	}).firstPage((error, records) => {
+		if(error) resolve(false)
+	    let allpeople = records.map(record => record._rawJson)
+		resolve(allpeople.find(person => person.fields["Name"] == name || person.fields["Email"] == email))
 	})
 })

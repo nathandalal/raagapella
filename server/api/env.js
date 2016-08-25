@@ -12,6 +12,7 @@ module.exports = {
 	},
 	MAILGUN: {
 		API_KEY: process.env.MAILGUN_API_KEY,
+		PUBLIC_API_KEY: process.env.MAILGUN_PUBLIC_API_KEY,
 		DOMAIN: process.env.MAILGUN_DOMAIN
 	}
 }

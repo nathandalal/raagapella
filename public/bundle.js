@@ -63609,28 +63609,22 @@
 
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FormModal).call(this, props));
 
-			_this.state = {
-				errorText: "",
-				failure: false
-			};
+			_this.state = { errorText: "", failure: false, loading: false };
 			return _this;
 		}
 
 		_createClass(FormModal, [{
 			key: 'componentWillReceiveProps',
 			value: function componentWillReceiveProps(nextProps) {
-				this.setState({
-					errorText: "",
-					failure: false
-				});
+				this.setState({ errorText: "", failure: false, loading: false });
 			}
 		}, {
 			key: 'submitForm',
 			value: function submitForm() {
 				var _this2 = this;
 
-				if (this.props.name == "") return this.setState({ errorText: "Please provide your name." });
-				if (this.props.email == "" || this.props.email.slice(-12) != "stanford.edu") return this.setState({ errorText: "Please provide a valid Stanford email." });
+				if (this.props.name == "") return this.setState({ failure: true, loading: false, errorText: "Please provide your name." });
+				if (this.props.email == "") return this.setState({ failure: true, loading: false, errorText: "Please provide an email." });
 				this.setState({ errorText: "" });
 				_axios2.default.put('/api/' + this.props.type + 's', {
 					id: this.props.currentSlot.id,
@@ -63646,7 +63640,7 @@
 					}, 4000);
 					_this2.props.onHide();
 				}).catch(function (e) {
-					return _this2.setState({ failure: true });
+					return _this2.setState({ failure: true, errorText: e.data.reason.errorString, loading: false });
 				});
 			}
 		}, {
@@ -63682,18 +63676,18 @@
 						) : "",
 						_react2.default.createElement('hr', null),
 						this.props.type == "callback" ? "Please enter in your information exactly as you did for your audition." : "",
-						this.state.errorText || this.state.failure ? _react2.default.createElement(
+						this.state.failure ? _react2.default.createElement(
 							'div',
-							{ className: 'alert alert-' + (this.state.failure ? "danger" : "warning") },
-							this.state.failure ? 'Form submission failed!' + (this.props.type == "callback" ? " You may be unauthorized. " : " ") + 'Please verify your entries or try again later.' : _react2.default.createElement(
+							{ className: 'alert alert-danger' },
+							_react2.default.createElement(
 								'span',
 								null,
 								_react2.default.createElement(
 									'strong',
 									null,
-									'Form Validation Error: '
+									'Form submission failed! '
 								),
-								this.state.errorText
+								this.state.errorText || "An internal server error occured. Please try again later."
 							)
 						) : "",
 						_react2.default.createElement(FieldGroup, {
@@ -63741,7 +63735,7 @@
 						),
 						_react2.default.createElement(
 							_reactBootstrap.Button,
-							{ bsStyle: 'primary', onClick: this.submitForm.bind(this) },
+							{ bsStyle: 'primary', onClick: this.submitForm.bind(this), disabled: this.state.loading },
 							'Submit'
 						)
 					)

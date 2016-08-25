@@ -20,22 +20,16 @@ let FieldGroup = ({ id, label, help, ...props }) => (
 export default class FormModal extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			errorText: "",
-			failure: false
-		}
+		this.state = { errorText: "", failure: false, loading: false }
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({
-			errorText: "",
-			failure: false
-		})
+		this.setState({ errorText: "", failure: false, loading: false })
 	}
 
 	submitForm() {
-		if(this.props.name == "") return this.setState({errorText: "Please provide your name."})
-		if(this.props.email == "" || this.props.email.slice(-12) != "stanford.edu") return this.setState({errorText: "Please provide a valid Stanford email."})
+		if(this.props.name == "") return this.setState({failure: true, loading: false, errorText: "Please provide your name."})
+		if(this.props.email == "") return this.setState({failure: true, loading: false, errorText: "Please provide an email."})
 		this.setState({errorText: ""})
 		axios.put(`/api/${this.props.type}s`, {
 			id: this.props.currentSlot.id,
@@ -48,7 +42,7 @@ export default class FormModal extends Component {
 			window.setTimeout(() => window.location.reload(), 4000)
 			this.props.onHide()
 		})
-		.catch(e => this.setState({failure: true}))
+		.catch(e => this.setState({ failure: true, errorText: e.data.reason.errorString, loading: false }))
 	}
 
 	render() {
@@ -67,11 +61,9 @@ export default class FormModal extends Component {
 				<hr />
 
 				{this.props.type == "callback" ? "Please enter in your information exactly as you did for your audition." : ""}
-				{this.state.errorText || this.state.failure ? 
-				<div className={`alert alert-${this.state.failure ? "danger" : "warning"}`}>
-					{this.state.failure ? 
-					`Form submission failed!${this.props.type == "callback" ? " You may be unauthorized. " : " "}Please verify your entries or try again later.` : 
-					<span><strong>Form Validation Error: </strong>{this.state.errorText}</span>}
+				{this.state.failure ? 
+				<div className="alert alert-danger">
+					<span><strong>Form submission failed! </strong>{this.state.errorText || "An internal server error occured. Please try again later."}</span>
 				</div> : ""}
 
 		  		<FieldGroup
@@ -105,7 +97,7 @@ export default class FormModal extends Component {
 			</Modal.Body>
 			<Modal.Footer>
 		  		<Button onClick={this.props.onHide}>Close</Button>
-		  		<Button bsStyle="primary" onClick={this.submitForm.bind(this)}>Submit</Button>
+		  		<Button bsStyle="primary" onClick={this.submitForm.bind(this)} disabled={this.state.loading}>Submit</Button>
 			</Modal.Footer>
 		</Modal>
       	)
