@@ -28,9 +28,9 @@ export default class FormModal extends Component {
 	}
 
 	submitForm() {
+		this.setState({errorText: "", failure: false, loading: true})
 		if(this.props.name == "") return this.setState({failure: true, loading: false, errorText: "Please provide your name."})
 		if(this.props.email == "") return this.setState({failure: true, loading: false, errorText: "Please provide an email."})
-		this.setState({errorText: ""})
 		axios.put(`/api/${this.props.type}s`, {
 			id: this.props.currentSlot.id,
 			name: this.props.name,

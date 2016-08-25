@@ -34,7 +34,7 @@ export default class Auditions extends Component {
 	renderSignup() {
 		return (
 			<div>
-				<div className="alert alert-success text-center">
+				<div className="alert alert-info text-center">
 					<strong>Quick Note:</strong> All auditions are hosted in <a href={this.state.slots[0].fields["Google Maps Location"]}><span style={{textDecoration:"underline"}}>{this.state.slots[0].fields["Location"]}</span></a> and are {this.state.slots[0].fields["Duration (Minutes)"]} minutes long.
 				</div>
 				<Table striped bordered condensed hover>

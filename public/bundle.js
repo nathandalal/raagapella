@@ -27497,7 +27497,7 @@
 					null,
 					_react2.default.createElement(
 						'div',
-						{ className: 'alert alert-success text-center' },
+						{ className: 'alert alert-info text-center' },
 						_react2.default.createElement(
 							'strong',
 							null,
@@ -63624,9 +63624,9 @@
 			value: function submitForm() {
 				var _this2 = this;
 
+				this.setState({ errorText: "", failure: false, loading: true });
 				if (this.props.name == "") return this.setState({ failure: true, loading: false, errorText: "Please provide your name." });
 				if (this.props.email == "") return this.setState({ failure: true, loading: false, errorText: "Please provide an email." });
-				this.setState({ errorText: "" });
 				_axios2.default.put('/api/' + this.props.type + 's', {
 					id: this.props.currentSlot.id,
 					name: this.props.name,
@@ -63835,7 +63835,7 @@
 					null,
 					_react2.default.createElement(
 						'div',
-						{ className: 'alert alert-success text-center' },
+						{ className: 'alert alert-info text-center' },
 						_react2.default.createElement(
 							'strong',
 							null,
