@@ -27496,6 +27496,28 @@
 					'div',
 					null,
 					_react2.default.createElement(
+						'div',
+						{ className: 'alert alert-success text-center' },
+						_react2.default.createElement(
+							'strong',
+							null,
+							'Quick Note:'
+						),
+						' All auditions are hosted in ',
+						_react2.default.createElement(
+							'a',
+							{ href: this.state.slots[0].fields["Google Maps Location"] },
+							_react2.default.createElement(
+								'span',
+								{ style: { textDecoration: "underline" } },
+								this.state.slots[0].fields["Location"]
+							)
+						),
+						' and are ',
+						this.state.slots[0].fields["Duration (Minutes)"],
+						' minutes long.'
+					),
+					_react2.default.createElement(
 						_reactBootstrap.Table,
 						{ striped: true, bordered: true, condensed: true, hover: true },
 						_react2.default.createElement(
@@ -27513,16 +27535,6 @@
 									'th',
 									{ style: { textAlign: "center" } },
 									'Time'
-								),
-								_react2.default.createElement(
-									'th',
-									{ style: { textAlign: "center" } },
-									'Duration'
-								),
-								_react2.default.createElement(
-									'th',
-									{ style: { textAlign: "center" } },
-									'Where'
 								),
 								_react2.default.createElement(
 									'th',
@@ -27548,17 +27560,6 @@
 										'td',
 										{ style: { textAlign: "center" } },
 										(0, _moment2.default)(data["Start Time"]).format("h:mm a")
-									),
-									_react2.default.createElement(
-										'td',
-										{ style: { textAlign: "center" } },
-										data["Duration (Minutes)"],
-										' minutes'
-									),
-									_react2.default.createElement(
-										'td',
-										{ style: { textAlign: "center" } },
-										data["Location"]
 									),
 									_react2.default.createElement(
 										'td',
@@ -63833,6 +63834,28 @@
 					'div',
 					null,
 					_react2.default.createElement(
+						'div',
+						{ className: 'alert alert-success text-center' },
+						_react2.default.createElement(
+							'strong',
+							null,
+							'Quick Note:'
+						),
+						' All callbacks are hosted in ',
+						_react2.default.createElement(
+							'a',
+							{ href: this.state.slots[0].fields["Google Maps Location"] },
+							_react2.default.createElement(
+								'span',
+								{ style: { textDecoration: "underline" } },
+								this.state.slots[0].fields["Location"]
+							)
+						),
+						' and are ',
+						this.state.slots[0].fields["Duration (Minutes)"],
+						' minutes long.'
+					),
+					_react2.default.createElement(
 						_reactBootstrap.Table,
 						{ striped: true, bordered: true, condensed: true, hover: true },
 						_react2.default.createElement(
@@ -63850,16 +63873,6 @@
 									'th',
 									{ style: { textAlign: "center" } },
 									'Time'
-								),
-								_react2.default.createElement(
-									'th',
-									{ style: { textAlign: "center" } },
-									'Duration'
-								),
-								_react2.default.createElement(
-									'th',
-									{ style: { textAlign: "center" } },
-									'Where'
 								),
 								_react2.default.createElement(
 									'th',
@@ -63885,17 +63898,6 @@
 										'td',
 										{ style: { textAlign: "center" } },
 										(0, _moment2.default)(data["Start Time"]).format("h:mm a")
-									),
-									_react2.default.createElement(
-										'td',
-										{ style: { textAlign: "center" } },
-										data["Duration (Minutes)"],
-										' minutes'
-									),
-									_react2.default.createElement(
-										'td',
-										{ style: { textAlign: "center" } },
-										data["Location"]
 									),
 									_react2.default.createElement(
 										'td',

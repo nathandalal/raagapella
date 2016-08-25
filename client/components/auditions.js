@@ -34,13 +34,14 @@ export default class Auditions extends Component {
 	renderSignup() {
 		return (
 			<div>
+				<div className="alert alert-success text-center">
+					<strong>Quick Note:</strong> All auditions are hosted in <a href={this.state.slots[0].fields["Google Maps Location"]}><span style={{textDecoration:"underline"}}>{this.state.slots[0].fields["Location"]}</span></a> and are {this.state.slots[0].fields["Duration (Minutes)"]} minutes long.
+				</div>
 				<Table striped bordered condensed hover>
 				    <thead>
 						<tr>
 							<th style={{textAlign: "center"}}>Date</th>
 							<th style={{textAlign: "center"}}>Time</th>
-							<th style={{textAlign: "center"}}>Duration</th>
-							<th style={{textAlign: "center"}}>Where</th>
 							<th style={{textAlign: "center"}}>Book Your Audition</th>
 						</tr>
 				    </thead>
@@ -51,8 +52,6 @@ export default class Auditions extends Component {
 							<tr key={JSON.stringify(data)}>
 								<td style={{textAlign: "center"}}>{moment(data["Start Time"]).format("M/D/YYYY")}</td>
 								<td style={{textAlign: "center"}}>{moment(data["Start Time"]).format("h:mm a")}</td>
-								<td style={{textAlign: "center"}}>{data["Duration (Minutes)"]} minutes</td>
-								<td style={{textAlign: "center"}}>{data["Location"]}</td>
 								<td style={{textAlign: "center"}}>
 									{data["Person"] ?
 									<span style={{color:"#d43f3a"}}>Taken</span> :
