@@ -85,14 +85,14 @@ export default class Auditions extends Component {
 				<div className="row">
 					<div style={{marginTop:'1em'}}></div>
 			    	<div className="col-md-8 col-md-offset-2">
+			    		{this.state.formSuccess? 
+						<div className="alert alert-success text-center">
+							<strong>Submitted!</strong> You'll receive an email confirmation soon.
+						</div> : ""}
 			      		<h1 className="text-center">
 			        		Auditions
 			      		</h1>
 			      		<center>
-			      		{this.state.formSuccess? 
-						<div className="alert alert-success text-center">
-							<strong>Submitted!</strong> You'll receive an email confirmation soon.
-						</div> : ""}
 			      			<h4>Select from the following timeslots!</h4>
 			      			<div>
 			      				{this.state.slots ? 

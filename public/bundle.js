@@ -27623,6 +27623,16 @@
 						_react2.default.createElement(
 							'div',
 							{ className: 'col-md-8 col-md-offset-2' },
+							this.state.formSuccess ? _react2.default.createElement(
+								'div',
+								{ className: 'alert alert-success text-center' },
+								_react2.default.createElement(
+									'strong',
+									null,
+									'Submitted!'
+								),
+								' You\'ll receive an email confirmation soon.'
+							) : "",
 							_react2.default.createElement(
 								'h1',
 								{ className: 'text-center' },
@@ -27631,16 +27641,6 @@
 							_react2.default.createElement(
 								'center',
 								null,
-								this.state.formSuccess ? _react2.default.createElement(
-									'div',
-									{ className: 'alert alert-success text-center' },
-									_react2.default.createElement(
-										'strong',
-										null,
-										'Submitted!'
-									),
-									' You\'ll receive an email confirmation soon.'
-								) : "",
 								_react2.default.createElement(
 									'h4',
 									null,
@@ -63961,6 +63961,16 @@
 						_react2.default.createElement(
 							'div',
 							{ className: 'col-md-8 col-md-offset-2' },
+							this.state.formSuccess ? _react2.default.createElement(
+								'div',
+								{ className: 'alert alert-success text-center' },
+								_react2.default.createElement(
+									'strong',
+									null,
+									'Submitted!'
+								),
+								' You\'ll receive an email confirmation soon.'
+							) : "",
 							_react2.default.createElement(
 								'h1',
 								{ className: 'text-center' },
@@ -63969,16 +63979,6 @@
 							_react2.default.createElement(
 								'center',
 								null,
-								this.state.formSuccess ? _react2.default.createElement(
-									'div',
-									{ className: 'alert alert-success text-center' },
-									_react2.default.createElement(
-										'strong',
-										null,
-										'Submitted!'
-									),
-									' You\'ll receive an email confirmation soon.'
-								) : "",
 								_react2.default.createElement(
 									'h4',
 									null,
