@@ -12,7 +12,7 @@ const Header = (props) => (
 					<a href="http://youtube.com/user/stanfordraagapella/">
 						<img width="48px" height="48px" src="/images/social-media-icons/youtube.png" />
 					</a>
-					<a href="https://play.spotify.com/artist/5Q6bZAB4lnENIQK22rGJu1" style={{margin:0}}>
+					<a href="https://open.spotify.com/artist/57NrwMkpC0Jgw31DpcpPZP" style={{margin:0}}>
 						<img width="48px" height="48px" src="/images/social-media-icons/spotify.png" />
 					</a>
 					<a href="http://soundcloud.com/stanfordraagapella">
