@@ -27346,7 +27346,7 @@
 						),
 						_react2.default.createElement(
 							'a',
-							{ href: 'https://play.spotify.com/artist/5Q6bZAB4lnENIQK22rGJu1', style: { margin: 0 } },
+							{ href: 'https://open.spotify.com/artist/57NrwMkpC0Jgw31DpcpPZP', style: { margin: 0 } },
 							_react2.default.createElement('img', { width: '48px', height: '48px', src: '/images/social-media-icons/spotify.png' })
 						),
 						_react2.default.createElement(
