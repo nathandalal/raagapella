@@ -84,9 +84,9 @@ module.exports.send = (person, event, type) => {
 					`Looking forward to seeing you!<br>` +
 					`Stanford Raagapella`,
 			attachment: filepath,
-			//cc: ["Nathan Dalal <nathanhd@stanford.edu>"]
+			cc: ["Nathan Dalal <nathanhd@stanford.edu>"]
 		}
-		//if(process.env.NODE_ENV == 'production') data.cc.push("Ronald Tep <rtep@stanford.edu>")
+		if(process.env.NODE_ENV == 'production') data.cc.push("Ronald Tep <rtep@stanford.edu>")
 
 		mailgun.messages().send(data, function (error, body) {
 			if(error) {
@@ -98,4 +98,4 @@ module.exports.send = (person, event, type) => {
 	})
 }
 
-if(process.env.NODE_ENV != "production") module.exports.send({"Name": "Nathan Dalal","Email": "nathanhd@stanford.edu"}, {"Start Time": new Date("2016-8-30"),"Duration (Minutes)": 30,"Location": "A3C Couchroom","Google Maps Location": `https://goo.gl/maps/5X6r8XNwbyo`},'audition')
+//if(process.env.NODE_ENV != "production") module.exports.send({"Name": "Nathan Dalal","Email": "nathanhdalal@gmail.com"}, {"Start Time": new Date("2016-8-30"),"Duration (Minutes)": 30,"Location": "A3C Couchroom","Google Maps Location": `https://goo.gl/maps/5X6r8XNwbyo`},'audition')
