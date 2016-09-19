@@ -39,7 +39,7 @@ module.exports.send = (person, event, type) => {
 	ical.createEvent(options, null, (err, filepath) => {
 		if(err) console.error(err)
 		var data = {
-			from: `Stanford Raagapella <no-reply@mailer.raagapella.com>`,
+			from: `Stanford Raagapella <no-reply@raagapella.com>`,
 			to: `${person["Name"]} <${person["Email"]}>`,
 			subject: `Confirming Your Raagapella ${type[0].toUpperCase() + type.slice(1)} on ${date} at ${time}`,
 			text: `Hey ${person['Name'].substr(0,person["Name"].indexOf(' '))}!\n\n` +
