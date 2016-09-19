@@ -38,11 +38,15 @@ module.exports.send = (person, event, type) => {
 
 	ical.createEvent(options, null, (err, filepath) => {
 		if(err) console.error(err)
+		person["First Name"] = 
+		(person["Name"].indexOf(' ') !== -1) ?
+			person['Name'].substr(0,person["Name"].indexOf(' ')) :
+			person["Name"]
 		var data = {
 			from: `Stanford Raagapella <no-reply@raagapella.com>`,
 			to: `${person["Name"]} <${person["Email"]}>`,
 			subject: `Confirming Your Raagapella ${type[0].toUpperCase() + type.slice(1)} on ${date} at ${time}`,
-			text: `Hey ${person['Name'].substr(0,person["Name"].indexOf(' '))}!\n\n` +
+			text: `Hey ${person["First Name"]}!\n\n` +
 
 					`Your ${type} is confirmed for ${date} at ${time}.\n\n` +
 					`We'll meet you at ${event["Location"]}.\n` +
@@ -59,7 +63,7 @@ module.exports.send = (person, event, type) => {
 					`Looking forward to seeing you!\n` +
 					`Stanford Raagapella`,
 
-			html: `<h3>Hey ${person['Name'].substr(0,person["Name"].indexOf(' '))}!</h3>` +
+			html: `<h3>Hey ${person["First Name"]}!</h3>` +
 
 					`<h4>${type[0].toUpperCase() + type.slice(1)} Details</h4>` +
 					`<p>` +
@@ -83,10 +87,9 @@ module.exports.send = (person, event, type) => {
 
 					`Looking forward to seeing you!<br>` +
 					`Stanford Raagapella`,
-			attachment: filepath,
-			cc: ["Nathan Dalal <nathanhd@stanford.edu>"]
+			attachment: filepath
 		}
-		if(process.env.NODE_ENV == 'production') data.cc.push("Ronald Tep <rtep@stanford.edu>")
+		if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Nathan Dalal <nathanhd@stanford.edu>"]
 
 		mailgun.messages().send(data, function (error, body) {
 			if(error) {
@@ -98,4 +101,4 @@ module.exports.send = (person, event, type) => {
 	})
 }
 
-//if(process.env.NODE_ENV != "production") module.exports.send({"Name": "Nathan Dalal","Email": "nathanhdalal@gmail.com"}, {"Start Time": new Date("2016-8-30"),"Duration (Minutes)": 30,"Location": "A3C Couchroom","Google Maps Location": `https://goo.gl/maps/5X6r8XNwbyo`},'audition')
+//if(process.env.NODE_ENV != "production") module.exports.send({"Name": "Bruh","Email": "nathanhdalal@gmail.com"}, {"Start Time": new Date("2016-8-30"),"Duration (Minutes)": 30,"Location": "A3C Couchroom","Google Maps Location": `https://goo.gl/maps/5X6r8XNwbyo`},'audition')
