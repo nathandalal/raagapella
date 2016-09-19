@@ -28640,7 +28640,7 @@
 	  value: true
 	});
 
-	var _getPersonImageUrl = __webpack_require__(629);
+	var _getPersonImageUrl = __webpack_require__(260);
 
 	Object.keys(_getPersonImageUrl).forEach(function (key) {
 	  if (key === "default" || key === "__esModule") return;
@@ -28653,7 +28653,21 @@
 	});
 
 /***/ },
-/* 260 */,
+/* 260 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports.getPersonImageUrl = function (person) {
+		var images = person["Picture"].map(function (imageObj) {
+			return imageObj.url;
+		});
+		if (images[1]) return images[1];
+		if (images[0]) return images[0];
+		return "http://f4xbx1lr5yj41rcrc3t0t4y1.wpengine.netdna-cdn.com/wp-content/uploads/2016/01/765-default-avatar-scalia-person.png";
+	};
+
+/***/ },
 /* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -64048,21 +64062,6 @@
 	}(_react.Component);
 
 	exports.default = Callbacks;
-
-/***/ },
-/* 629 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	module.exports.getPersonImageUrl = function (person) {
-		var images = person["Picture"].map(function (imageObj) {
-			return imageObj.url;
-		});
-		if (images[1]) return images[1];
-		if (images[0]) return images[0];
-		return "http://f4xbx1lr5yj41rcrc3t0t4y1.wpengine.netdna-cdn.com/wp-content/uploads/2016/01/765-default-avatar-scalia-person.png";
-	};
 
 /***/ }
 /******/ ]);

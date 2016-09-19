@@ -46,7 +46,8 @@ module.exports.send = (person, event, type) => {
 
 					`Your ${type} is confirmed for ${date} at ${time}.\n\n` +
 					`We'll meet you at ${event["Location"]}.\n` +
-					`A Google Maps link is here for your convenience: ${event["Google Maps Location"]}\n\n` +
+					`A Google Maps link is here for your convenience: ${event["Google Maps Location"]}\n` +
+					`Please arrive 5 minutes early with a 30-60 second vocal piece that plays to your strengths.\n\n` +
 
 					(type == "audition" ? "Also, before your audition, please let us know a little more about you at this link: http://bit.ly/RaagapellaAuditionInfo2016\n\n" : "") +
 
@@ -63,7 +64,8 @@ module.exports.send = (person, event, type) => {
 					`<h4>${type[0].toUpperCase() + type.slice(1)} Details</h4>` +
 					`<p>` +
 						`Your ${type} is confirmed for <strong>${date}</strong> at <strong>${time}</strong>.<br>` +
-						`We'll meet you at ${event["Location"]}. Here's a <a href="${event["Google Maps Location"]}">Google Maps link</a>.` +
+						`We'll meet you at ${event["Location"]}. Here's a <a href="${event["Google Maps Location"]}">Google Maps link</a>.<br>` +
+						"Please arrive 5 minutes early with a <strong>30-60 second vocal piece</strong> that plays to your strengths." +
 						"<br><br>" + 
 
 						(type == "audition" ? `Also, before your audition, please let us know a little more about you <a href="http://bit.ly/RaagapellaAuditionInfo2016">at this link</a>.` : "") +
@@ -96,4 +98,4 @@ module.exports.send = (person, event, type) => {
 	})
 }
 
-//module.exports.send({"Name": "Nathan Dalal","Email": "nathanhdalal@gmail.com"}, {"Start Time": new Date("2016-8-30"),"Duration (Minutes)": 30,"Location": "A3C Couchroom","Google Maps Location": `https://goo.gl/maps/5X6r8XNwbyo`},'audition')
+module.exports.send({"Name": "Nathan Dalal","Email": "nathanhdalal@gmail.com"}, {"Start Time": new Date("2016-8-30"),"Duration (Minutes)": 30,"Location": "A3C Couchroom","Google Maps Location": `https://goo.gl/maps/5X6r8XNwbyo`},'audition')
