@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 
 import { Link } from 'react-router'
 
+import axios from 'axios'
+
 import Header from './header'
-import roster from '../utils/roster'
+import { getPersonImageUrl } from '../utils/index'
 
 export default class Homepage extends Component {
 	constructor(props) {
 		super(props)
+		this.state = {}
+		axios.get('/api/roster').then(result => this.setState({roster: result.data}))
 	}
 
 	renderYoutubeVideo() {
@@ -46,6 +50,9 @@ export default class Homepage extends Component {
 	}
 
 	renderTeam() {
+		let roster = this.state.roster
+		console.log(roster)
+		if(!roster) return <div>Our team is loading and will arrive soon. We're generally late to practice.</div>
 		return (
 			<div className="row">
 	    		<div className="col-md-8 col-md-offset-2">
@@ -55,15 +62,15 @@ export default class Homepage extends Component {
 	      			<div style={{marginTop:'1em'}}></div>
 	      			<div className="row">
 	      			{roster.map(person => (
-	        			<div key={person.name} className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-		          			<img src={`/images/people/${person.name.split(" ").join("-").toLowerCase()}.jpg`} className="img img-responsive" />
+	        			<div key={person["Name"]} className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+		          			<img src={getPersonImageUrl(person)} className="img img-responsive" />
 		          			<div className="text-center">
 			            		<h4 style={{marginBottom:0}}>
-			              			{person.name}
+			              			{person["Name"]}
 			            		</h4>
 			            		<p style={{margin:0}}>
-			              			{person.position ? <span>{person.position}<br /></span> : ""}
-			             			{person.section} {person.sectionLeader ? "Section Leader" : ""}
+			              			{person["Title"] ? <span>{person["Title"]}<br /></span> : ""}
+			             			{person["Section"]} {person["Section Leader"] ? "Section Leader" : ""}
 			            		</p>
 			            		<div style={{marginTop:'1em'}}></div>
 		          			</div>

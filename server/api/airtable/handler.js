@@ -5,6 +5,26 @@ let base = new Airtable({ apiKey: AIRTABLE.API_KEY }).base(AIRTABLE.BASE)
 import SlackHandler from '../slack/handler'
 import MailgunHandler from '../mailgun/handler'
 
+module.exports.getRoster = () => new Promise((resolve, reject) => {
+	base('Current Roster').select({
+    	view: "Main View"
+	}).firstPage((error, records) => {
+		if(error) reject(error)
+	    resolve(records.map(record => record._rawJson.fields))
+	})
+})
+
+module.exports.getEvents = () => new Promise((resolve, reject) => {
+	base('Events').select({
+		maxRecords: 3,
+		sort: [{field: "Time", direction: "desc"}],
+    	view: "Main View"
+	}).firstPage((error, records) => {
+		if(error) reject(error)
+	    resolve(records.map(record => record._rawJson.fields))
+	})
+})
+
 module.exports.getAuditions = () => new Promise((resolve, reject) => {
 	base('Auditions').select({
     	view: "Main View"

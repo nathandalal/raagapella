@@ -8,9 +8,14 @@
     Welcome to the API for this application!
     This is a JSON API with the following routes.
     <ul>
-        <% for(var i = 0; i < routes.length; i++) { %>
-        <li><%= routes[i] %></li>
-        <% } %>
+        <% routes.forEach(function(route) { %>
+        <% var link = "/api" + route.routename %>
+        <li>
+        	<a href="<%= link %>"><strong><%= route.routename %></strong></a><br />
+        	Methods Defined: <%= route.methods.join(", ") %><br />
+        	<%= route.description %>
+        </li>
+        <% }) %>
     </ul>
 </body>
 

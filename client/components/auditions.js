@@ -35,7 +35,9 @@ export default class Auditions extends Component {
 		return (
 			<div>
 				<div className="alert alert-info text-center">
-					<strong>Quick Note:</strong> All auditions are hosted in <a href={this.state.slots[0].fields["Google Maps Location"]}><span style={{textDecoration:"underline"}}>{this.state.slots[0].fields["Location"]}</span></a> and are {this.state.slots[0].fields["Duration (Minutes)"]} minutes long.
+					<strong>Quick Note:</strong> All auditions are hosted in <a href={this.state.slots[0].fields["Google Maps Location"]}><span style={{textDecoration:"underline"}}>{this.state.slots[0].fields["Location"]}</span></a> and are {this.state.slots[0].fields["Duration (Minutes)"]} minutes long.<br/><br />
+					Please arrive 5 minutes early with a 30-60 second vocal piece that plays to your strengths!<br />
+					We want to see your ability as best as possible. Thank you!
 				</div>
 				<Table striped bordered condensed hover>
 				    <thead>
