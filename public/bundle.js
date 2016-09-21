@@ -28904,7 +28904,7 @@
 								{ className: 'text-center' },
 								'Raagapella is an ',
 								_react2.default.createElement(
-									'strong',
+									'u',
 									null,
 									'all-male South Asian'
 								),
