@@ -28906,9 +28906,9 @@
 								_react2.default.createElement(
 									'u',
 									null,
-									'all-male South Asian'
+									'all-male'
 								),
-								' a cappella group.'
+								' South Asian themed a cappella group.'
 							),
 							_react2.default.createElement(
 								'center',
