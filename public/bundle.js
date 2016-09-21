@@ -28900,6 +28900,17 @@
 								'Auditions'
 							),
 							_react2.default.createElement(
+								'h3',
+								{ className: 'text-center' },
+								'Raagapella is an ',
+								_react2.default.createElement(
+									'strong',
+									null,
+									'all-male South Asian'
+								),
+								' a cappella group.'
+							),
+							_react2.default.createElement(
 								'center',
 								null,
 								_react2.default.createElement(
