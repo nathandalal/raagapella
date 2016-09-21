@@ -95,7 +95,7 @@ export default class Auditions extends Component {
 			        		Auditions
 			      		</h1>
 			      		<h3 className="text-center">
-			      			Raagapella is an <u>all-male South Asian</u> a cappella group.
+			      			Raagapella is an <u>all-male</u> South Asian themed a cappella group.
 			      		</h3>
 			      		<center>
 			      			<h4>Select from the following timeslots!</h4>
