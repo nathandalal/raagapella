@@ -27217,7 +27217,7 @@
 				console.log(roster);
 				if (!roster) return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'text-center' },
 					'Our team is loading and will arrive soon. We\'re generally late to practice.'
 				);
 				return _react2.default.createElement(
@@ -27248,18 +27248,30 @@
 											{ style: { marginBottom: 0 } },
 											person["Name"]
 										),
-										_react2.default.createElement(
+										person["Title"] ? _react2.default.createElement(
 											'p',
 											{ style: { margin: 0 } },
-											person["Title"] ? _react2.default.createElement(
+											_react2.default.createElement(
 												'span',
 												null,
 												person["Title"],
 												_react2.default.createElement('br', null)
-											) : "",
+											),
 											person["Section"],
 											' ',
 											person["Section Leader"] ? "Section Leader" : ""
+										) : _react2.default.createElement(
+											'p',
+											{ style: { margin: 0 } },
+											_react2.default.createElement(
+												'span',
+												null,
+												person["Section"],
+												' ',
+												person["Section Leader"] ? "Section Leader" : "",
+												_react2.default.createElement('br', null),
+												_react2.default.createElement('br', null)
+											)
 										),
 										_react2.default.createElement('div', { style: { marginTop: '1em' } })
 									)

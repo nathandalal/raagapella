@@ -52,7 +52,7 @@ export default class Homepage extends Component {
 	renderTeam() {
 		let roster = this.state.roster
 		console.log(roster)
-		if(!roster) return <div>Our team is loading and will arrive soon. We're generally late to practice.</div>
+		if(!roster) return <div className="text-center">Our team is loading and will arrive soon. We're generally late to practice.</div>
 		return (
 			<div className="row">
 	    		<div className="col-md-8 col-md-offset-2">
@@ -68,10 +68,14 @@ export default class Homepage extends Component {
 			            		<h4 style={{marginBottom:0}}>
 			              			{person["Name"]}
 			            		</h4>
-			            		<p style={{margin:0}}>
-			              			{person["Title"] ? <span>{person["Title"]}<br /></span> : ""}
-			             			{person["Section"]} {person["Section Leader"] ? "Section Leader" : ""}
-			            		</p>
+		              			{person["Title"] ? 
+		              				<p style={{margin:0}}>
+		              					<span>{person["Title"]}<br /></span>
+		              					{person["Section"]} {person["Section Leader"] ? "Section Leader" : ""}
+		              				</p> :
+		              				<p style={{margin:0}}>
+		              					<span>{person["Section"]} {person["Section Leader"] ? "Section Leader" : ""}<br /><br /></span>
+		              				</p>}
 			            		<div style={{marginTop:'1em'}}></div>
 		          			</div>
 		        		</div>
