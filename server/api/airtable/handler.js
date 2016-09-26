@@ -119,14 +119,14 @@ let createPerson = (name, email, references) => new Promise((resolve, reject) =>
 	}
 	if(references) newPerson["Where did you hear about us?"] = references
 
-	base('People').create(newPerson, (err, record) => {
+	base('Auditioners').create(newPerson, (err, record) => {
 		if(err) reject(err)
 		resolve(record)
 	})
 })
 
 let verifyPerson = (name, email) => new Promise((resolve, reject) => {
-	base('People').select({
+	base('Auditioners').select({
     	view: "Main View"
 	}).firstPage((error, records) => {
 		if(error) resolve(false)
@@ -136,7 +136,7 @@ let verifyPerson = (name, email) => new Promise((resolve, reject) => {
 })
 
 let checkIfPersonExists = (name, email) => new Promise((resolve, reject) => {
-	base('People').select({
+	base('Auditioners').select({
     	view: "Main View"
 	}).firstPage((error, records) => {
 		if(error) resolve(false)
