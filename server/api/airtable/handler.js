@@ -6,8 +6,8 @@ import SlackHandler from '../slack/handler'
 import MailgunHandler from '../mailgun/handler'
 
 module.exports.getRoster = () => new Promise((resolve, reject) => {
-	base('Current Roster').select({
-    	view: "Main View"
+	base('Members').select({
+    	view: "Current Members"
 	}).firstPage((error, records) => {
 		if(error) reject(error)
 	    resolve(records.map(record => record._rawJson.fields))
