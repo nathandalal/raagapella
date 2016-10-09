@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 import axios from 'axios'
 
 import Header from './header'
-import { getPersonImageUrl } from '../utils/index'
+import { getPersonImageUrl, areAuditionsActive } from '../utils/index'
 
 export default class Homepage extends Component {
 	constructor(props) {
@@ -51,8 +51,12 @@ export default class Homepage extends Component {
 
 	renderTeam() {
 		let roster = this.state.roster
-		console.log(roster)
-		if(!roster) return <div className="text-center">Our team is loading and will arrive soon. We're generally late to practice.</div>
+		if(!roster) return  (
+			<div className="text-center">
+				Our team is loading and will arrive soon. We're generally late to practice.
+			</div>
+		)
+			
 		return (
 			<div className="row">
 	    		<div className="col-md-8 col-md-offset-2">
@@ -87,6 +91,9 @@ export default class Homepage extends Component {
 	}
 
 	renderAuditionsAreLive() {
+		console.log(areAuditionsActive())
+		if(!areAuditionsActive()) return ""
+
 		return (
 			<div className="alert alert-success text-center">
 				<h4 style={{marginBottom:0}}>

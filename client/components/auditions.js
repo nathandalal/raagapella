@@ -10,6 +10,8 @@ import moment from 'moment'
 import Header from './header'
 import FormModal from './form-modal'
 
+import { areAuditionsActive } from '../utils/index'
+
 export default class Auditions extends Component {
 	constructor(props) {
 		super(props)
@@ -32,14 +34,18 @@ export default class Auditions extends Component {
 	}
 
 	renderSignup() {
+		let auditionsActive = areAuditionsActive()
 		return (
 			<div>
-				<div className="alert alert-info text-center">
+				{auditionsActive ? <div className="alert alert-info text-center">
 					<strong>Quick Note:</strong> All auditions are hosted in <a href={this.state.slots[0].fields["Google Maps Location"]}><span style={{textDecoration:"underline"}}>{this.state.slots[0].fields["Location"]}</span></a> and are {this.state.slots[0].fields["Duration (Minutes)"]} minutes long.<br/><br />
 					Please arrive 5 minutes early with a 30-60 second vocal piece that plays to your strengths!<br />
 					We want to see your ability as best as possible. Thank you!
-				</div>
-				<Table striped bordered condensed hover>
+				</div> :
+				<div className="alert alert-warning text-center">
+					Auditions are closed right now. Please check back at the start of the next school year!
+				</div>}
+				{auditionsActive ? <Table striped bordered condensed hover>
 				    <thead>
 						<tr>
 							<th style={{textAlign: "center"}}>Date</th>
@@ -68,7 +74,7 @@ export default class Auditions extends Component {
 						)
 					})}
 				    </tbody>
-				  </Table>
+				  </Table> : ""}
 			</div>
 		)
 	}
