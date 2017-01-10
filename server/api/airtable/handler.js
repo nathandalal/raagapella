@@ -14,6 +14,19 @@ module.exports.getRoster = () => new Promise((resolve, reject) => {
 	})
 })
 
+module.exports.getAlumRoster = () => new Promise((resolve, reject) => {
+	var alums = []
+	base('Members').select({
+    	view: "Alums"
+	}).eachPage(function page(records, fetchNextPage) {
+	    alums = alums.concat(records)
+	    fetchNextPage()
+	}, function done(error) {
+	    if (error) reject(error)
+	    resolve(alums.map(record => record._rawJson.fields))
+	})
+})
+
 module.exports.getEvents = () => new Promise((resolve, reject) => {
 	base('Events').select({
 		maxRecords: 3,

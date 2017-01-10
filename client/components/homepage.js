@@ -12,6 +12,7 @@ export default class Homepage extends Component {
 		super(props)
 		this.state = {}
 		axios.get('/api/roster').then(result => this.setState({roster: result.data}))
+		axios.get('/api/alumroster').then(result => this.setState({alumroster: result.data}))
 	}
 
 	renderYoutubeVideo() {
@@ -90,8 +91,48 @@ export default class Homepage extends Component {
 		)
 	}
 
+	renderAlums() {
+		let roster = this.state.alumroster
+		if(!roster) return  (
+			<div className="text-center">
+				Our alums take a very long time to get to practice. Please be patient.
+			</div>
+		)
+			
+		return (
+			<div className="row">
+	    		<div className="col-md-8 col-md-offset-2">
+	      			<h2 className="text-center">
+	        			Our Alumni
+	      			</h2>
+	      			<div style={{marginTop:'1em'}}></div>
+	      			<div className="row">
+	      			{roster.map(person => (
+	        			<div key={person["Name"]} className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+		          			<img src={getPersonImageUrl(person)} className="img img-responsive" />
+		          			<div className="text-center">
+			            		<h4 style={{marginBottom:0}}>
+			              			{person["Name"]}
+			            		</h4>
+		              			{person["Title"] ? 
+		              				<p style={{margin:0}}>
+		              					<span>{person["Title"]}<br /></span>
+		              					{person["Section"]} {person["Section Leader"] ? "Section Leader" : ""}
+		              				</p> :
+		              				<p style={{margin:0}}>
+		              					<span>{person["Section"]} {person["Section Leader"] ? "Section Leader" : ""}<br /><br /></span>
+		              				</p>}
+			            		<div style={{marginTop:'1em'}}></div>
+		          			</div>
+		        		</div>
+	        		))}
+	        		</div>
+   				</div>
+  			</div>
+		)
+	}
+
 	renderAuditionsAreLive() {
-		console.log(areAuditionsActive())
 		if(!areAuditionsActive()) return ""
 
 		return (
@@ -115,6 +156,8 @@ export default class Homepage extends Component {
 					{this.renderAboutUs()}
 					<hr />
 					{this.renderTeam()}
+					<hr />
+					{this.renderAlums()}
 					<hr />
 				</div>
 			</div>

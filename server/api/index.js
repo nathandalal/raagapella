@@ -29,6 +29,11 @@ var availableRoutes = [
         routename: '/events',
         methods: ["GET"],
         description: "Gets up to three of the most upcoming events."
+    },
+    {
+        routename: '/alumroster',
+        methods: ["GET"],
+        description: "Gets the Raagapella alumni, their voice parts, and their images."
     }
 ]
 
@@ -80,6 +85,12 @@ router.put(availableRoutes[2].routename, (req, res) => {
 
 router.get(availableRoutes[3].routename, (req, res) => {
     AirtableHandler.getEvents()
+    .then(people => res.send(people))
+    .catch(e => internalServerError(res, e))
+})
+
+router.get(availableRoutes[4].routename, (req, res) => {
+    AirtableHandler.getAlumRoster()
     .then(people => res.send(people))
     .catch(e => internalServerError(res, e))
 })
