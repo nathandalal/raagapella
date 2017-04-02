@@ -18,7 +18,6 @@ module.exports.validate = (email) => new Promise((resolve, reject) => {
 })
 
 module.exports.send = (person, event, type) => {
-	console.log(person, event, type)
 	var mailgun = require('mailgun-js')({apiKey: MAILGUN.API_KEY, domain: MAILGUN.DOMAIN})
 
 	let rightmoment = moment(event["Start Time"])
@@ -90,7 +89,7 @@ module.exports.send = (person, event, type) => {
 					`Stanford Raagapella`,
 			attachment: filepath
 		}
-		if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Kuhan Jeyapragasan <kuhanj@stanford.edu>"]
+		if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Kuhan Jeyapragasan <kuhanj@stanford.edu>", "Nathan Dalal <nathanhd@stanford.edu>"]
 
 		mailgun.messages().send(data, function (error, body) {
 			if(error) {
