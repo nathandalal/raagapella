@@ -42842,10 +42842,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports.areAuditionsActive = function () {
-		var now = (0, _moment2.default)(new Date());
-		var currentYear = (0, _moment2.default)(new Date()).year();
-		var auditionsActive = now.isAfter(new Date('4-01-' + currentYear)) && now.isBefore(new Date('4-15-' + currentYear)) || now.isAfter(new Date('9-01-' + currentYear)) && now.isBefore(new Date('10-01-' + currentYear));
-		return auditionsActive;
+		return true;
 	};
 
 /***/ },
