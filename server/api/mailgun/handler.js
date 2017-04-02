@@ -58,7 +58,7 @@ module.exports.send = (person, event, type) => {
 					`We've included a calendar event attachment so you don't forget your ${type}.\n` +
 					`If you have any other questions, you can contact:\n` +
 					`	• Ronald Tep → (864) 202-2733 (email cc'ed)\n` +
-					`	• Nathan Dalal → (510) 574-6653 (email cc'ed)\n\n` +
+					`	• Kuhan Jeyapragasan → (650) 284-6611 (email cc'ed)\n\n` +
 
 					`Looking forward to seeing you!\n` +
 					`Stanford Raagapella`,
@@ -82,14 +82,14 @@ module.exports.send = (person, event, type) => {
 					`</p>` +
 					`<ul>` + 
 						`<li>Ronald Tep → (864) 202-2733 (email cc'ed)</li>` +
-						`<li>Nathan Dalal → (510) 574-6653 (email cc'ed)</li>` +
+						`<li>Kuhan Jeyapragasan → (650) 284-6611 (email cc'ed)</li>` +
 					`</ul>` +
 
 					`Looking forward to seeing you!<br>` +
 					`Stanford Raagapella`,
 			attachment: filepath
 		}
-		if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Nathan Dalal <nathanhd@stanford.edu>"]
+		if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Kuhan Jeyapragasan <kuhanj@stanford.edu>"]
 
 		mailgun.messages().send(data, function (error, body) {
 			if(error) {
@@ -101,4 +101,6 @@ module.exports.send = (person, event, type) => {
 	})
 }
 
-//if(process.env.NODE_ENV != "production") module.exports.send({"Name": "Bruh","Email": "nathanhdalal@gmail.com"}, {"Start Time": new Date("2016-8-30"),"Duration (Minutes)": 30,"Location": "A3C Couchroom","Google Maps Location": `https://goo.gl/maps/5X6r8XNwbyo`},'audition')
+//MAKESHIFT TESTING CODE
+let testemailaddress = "nathanhdalal@gmail.com"
+//if(process.env.NODE_ENV != "production") module.exports.send({"Name": "Bruh","Email": testemailaddress}, {"Start Time": new Date("2073-8-30"),"Duration (Minutes)": 17,"Location": "A3C Couchroom","Google Maps Location": `https://goo.gl/maps/5X6r8XNwbyo`},'audition')

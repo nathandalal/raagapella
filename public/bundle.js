@@ -42845,16 +42845,15 @@
 		var now = (0, _moment2.default)(new Date());
 		var currentYear = now.year();
 
-		var validDateRanges = [[_moment2.default.utc(new Date(currentYear, 3, 1)), _moment2.default.utc(new Date(currentYear, 3, 15))], //spring
-		[_moment2.default.utc(new Date(currentYear, 8, 1)), _moment2.default.utc(new Date(currentYear, 9, 1))] //fall
-		];
-
-		console.log(validDateRanges);
+		var validDateRanges = [
+		//spring -> apr is 3
+		[_moment2.default.utc(new Date(currentYear, 3, 1)), _moment2.default.utc(new Date(currentYear, 3, 15))],
+		//fall -> sep is 8, oct is 9
+		[_moment2.default.utc(new Date(currentYear, 8, 1)), _moment2.default.utc(new Date(currentYear, 9, 1))]];
 
 		var auditionsActive = false;
 
 		validDateRanges.forEach(function (dateTuple) {
-			console.log(dateTuple);
 			if (now.isAfter(dateTuple[0]) && now.isBefore(dateTuple[1])) {
 				auditionsActive = true;
 			}
