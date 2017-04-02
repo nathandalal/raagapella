@@ -42842,7 +42842,25 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports.areAuditionsActive = function () {
-		return true;
+		var now = (0, _moment2.default)(new Date());
+		var currentYear = now.year();
+
+		var validDateRanges = [[_moment2.default.utc(new Date(currentYear, 3, 1)), _moment2.default.utc(new Date(currentYear, 3, 15))], //spring
+		[_moment2.default.utc(new Date(currentYear, 8, 1)), _moment2.default.utc(new Date(currentYear, 9, 1))] //fall
+		];
+
+		console.log(validDateRanges);
+
+		var auditionsActive = false;
+
+		validDateRanges.forEach(function (dateTuple) {
+			console.log(dateTuple);
+			if (now.isAfter(dateTuple[0]) && now.isBefore(dateTuple[1])) {
+				auditionsActive = true;
+			}
+		});
+
+		return auditionsActive;
 	};
 
 /***/ },
