@@ -18,10 +18,10 @@ module.exports.validate = (email) => new Promise((resolve, reject) => {
 })
 
 module.exports.send = (person, event, type) => new Promise((resolve, reject) => {
-	console.log(MAILGUN, event)
+	console.log(MAILGUN)
 	var mailgun = require('mailgun-js')({apiKey: MAILGUN.API_KEY, domain: MAILGUN.DOMAIN})
-	let rightmoment = moment.utc(new Date(event["Start Time"]))
-	console.log(rightmoment)
+
+	let rightmoment = moment(event["Start Time"])
 	//let date = rightmoment.tz('America/Los_Angeles').format("M/D/YYYY")
 	//let time = rightmoment.tz('America/Los_Angeles').format("h:mm A")
 	let date = "4/5/2019"
@@ -31,14 +31,13 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 		eventName: `${type[0].toUpperCase() + type.slice(1)} for Raagapella`,
 		filename: `${type}.ics`,
 		dtstart: rightmoment.toDate(),
-		dtend: rightmoment.toDate(),//moment.utc(rightmoment).add(event["Duration (Minutes)"], "minutes").toDate(),
+		dtend: moment(rightmoment).add(event["Duration (Minutes)"], "minutes").toDate(),
 		location: event["Location"],
 		organizer: {
 			name: 'Stanford Raagapella',
 			email: 'business@raagapella.com'
 		}
 	}
-	console.log(options)
 
 	ical.createEvent(options, null, (err, filepath) => {
 		console.log("aqui en ical")
