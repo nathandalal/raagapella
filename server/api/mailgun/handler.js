@@ -18,6 +18,7 @@ module.exports.validate = (email) => new Promise((resolve, reject) => {
 })
 
 module.exports.send = (person, event, type) => new Promise((resolve, reject) => {
+	console.log(MAILGUN)
 	var mailgun = require('mailgun-js')({apiKey: MAILGUN.API_KEY, domain: MAILGUN.DOMAIN})
 
 	let rightmoment = moment(event["Start Time"])
@@ -37,6 +38,7 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 	}
 
 	ical.createEvent(options, null, (err, filepath) => {
+		console.log("aqui en ical")
 		if(err) reject({type: "ical formatting error", error: err})
 		person["First Name"] = 
 		(person["Name"].indexOf(' ') !== -1) ?
@@ -92,6 +94,7 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 		if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Kuhan Jeyapragasan <kuhanj@stanford.edu>", "Nathan Dalal <nathanhd@stanford.edu>"]
 
 		mailgun.messages().send(data, function (error, body) {
+			console.log("aqui en mailgun")
 			if(error) {
 				SlackHandler.write(`Error writing email to *${person["Name"]}* (_${person["Email"]}_). When this happens, my overlord tells me to bring <@U0BFHB2RL> and <@U0BGMJK0F> in to resolve the problem.`)
 				reject({type: "mailgun error", error: error})
