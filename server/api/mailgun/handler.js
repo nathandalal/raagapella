@@ -18,6 +18,7 @@ module.exports.validate = (email) => new Promise((resolve, reject) => {
 })
 
 module.exports.send = (person, event, type) => {
+	console.log(person, event, type)
 	var mailgun = require('mailgun-js')({apiKey: MAILGUN.API_KEY, domain: MAILGUN.DOMAIN})
 
 	let rightmoment = moment(event["Start Time"])
@@ -101,6 +102,6 @@ module.exports.send = (person, event, type) => {
 	})
 }
 
-//MAKESHIFT TESTING CODE
+//MAKESHIFT TESTING CODE - ADD YOUR OWN EMAIL AND UNDO THE COMMENT
 let testemailaddress = "nathanhdalal@gmail.com"
 //if(process.env.NODE_ENV != "production") module.exports.send({"Name": "Bruh","Email": testemailaddress}, {"Start Time": new Date("2073-8-30"),"Duration (Minutes)": 17,"Location": "A3C Couchroom","Google Maps Location": `https://goo.gl/maps/5X6r8XNwbyo`},'audition')
