@@ -18,10 +18,10 @@ module.exports.validate = (email) => new Promise((resolve, reject) => {
 })
 
 module.exports.send = (person, event, type) => new Promise((resolve, reject) => {
-	console.log(MAILGUN)
+	console.log(MAILGUN, event)
 	var mailgun = require('mailgun-js')({apiKey: MAILGUN.API_KEY, domain: MAILGUN.DOMAIN})
-
-	let rightmoment = moment.utc(event["Start Time"])
+	let rightmoment = moment.utc(new Date(event["Start Time"])
+	console.log(rightmoment)
 	//let date = rightmoment.tz('America/Los_Angeles').format("M/D/YYYY")
 	//let time = rightmoment.tz('America/Los_Angeles').format("h:mm A")
 	let date = "4/5/2019"
