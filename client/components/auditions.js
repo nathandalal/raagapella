@@ -101,10 +101,10 @@ export default class Auditions extends Component {
 			        		Auditions
 			      		</h1>
 			      		<h3 className="text-center">
-			      			Raagapella is an <u>all-male</u> South Asian themed a cappella group.
+			      			Raagapella is an <u>all-gender</u> South Asian themed a cappella group.
 			      		</h3>
 			      		<center>
-			      			<h4>Select from the following timeslots!</h4>
+			      			<h4>Select from the following timeslots! We're dying to listen to you!</h4>
 			      			<div>
 			      				{this.state.slots ? 
 			      				this.renderSignup() :
