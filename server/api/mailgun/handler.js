@@ -31,13 +31,14 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 		eventName: `${type[0].toUpperCase() + type.slice(1)} for Raagapella`,
 		filename: `${type}.ics`,
 		dtstart: rightmoment.toDate(),
-		dtend: moment.utc(rightmoment).add(event["Duration (Minutes)"], "minutes").toDate(),
+		dtend: rightmoment.toDate(),//moment.utc(rightmoment).add(event["Duration (Minutes)"], "minutes").toDate(),
 		location: event["Location"],
 		organizer: {
 			name: 'Stanford Raagapella',
 			email: 'business@raagapella.com'
 		}
 	}
+	console.log(options)
 
 	ical.createEvent(options, null, (err, filepath) => {
 		console.log("aqui en ical")
