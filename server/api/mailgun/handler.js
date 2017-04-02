@@ -93,7 +93,7 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 					`Stanford Raagapella`,
 			attachment: filepath
 		}
-		if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Kuhan Jeyapragasan <kuhanj@stanford.edu>", "Nathan Dalal <nathanhd@stanford.edu>"]
+		//if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Kuhan Jeyapragasan <kuhanj@stanford.edu>", "Nathan Dalal <nathanhd@stanford.edu>"]
 
 		mailgun.messages().send(data, function (error, body) {
 			console.log("aqui en mailgun")
