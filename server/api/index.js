@@ -66,10 +66,7 @@ router.put(availableRoutes[1].routename, (req, res) => {
         return ErrorResponse.badUserRequestError(res, availableRoutes[1].routename, "Empty PUT request")
     AirtableHandler.registerAudition(req.body.id, req.body.name, req.body.email, req.body.references)
     .then(audition => res.send(audition))
-    .catch(e => {
-        console.log(internalServerError(res, e))
-        return internalServerError(res, e)
-    })
+    .catch(e => internalServerError(res, e))
 })
 
 router.get(availableRoutes[2].routename, (req, res) => {

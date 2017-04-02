@@ -37,7 +37,7 @@ module.exports.send = (person, event, type) => {
 	}
 
 	ical.createEvent(options, null, (err, filepath) => {
-		if(err) console.error(err)
+		if(err) console.error("ical error", err)
 		person["First Name"] = 
 		(person["Name"].indexOf(' ') !== -1) ?
 			person['Name'].substr(0,person["Name"].indexOf(' ')) :
@@ -93,7 +93,7 @@ module.exports.send = (person, event, type) => {
 
 		mailgun.messages().send(data, function (error, body) {
 			if(error) {
-				console.error(error)
+				console.error("mailgun error", error)
 				return SlackHandler.write(`Error writing email to *${person["Name"]}* (_${person["Email"]}_). When this happens, my overlord tells me to bring <@U0BFHB2RL> and <@U0BGMJK0F> in to resolve the problem.`)
 			}
 		})

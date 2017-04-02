@@ -86,6 +86,7 @@ module.exports.registerAudition = (auditionid, name, email, references) => new P
 	.then(airtabledone => {
 		console.log("Person added to airtable, now sending email confirmation and Slack confirmation message.")
 		let person = airtabledone[0].fields, audition = airtabledone[1].fields
+		console.log(person)
 		SlackHandler.write(
 			`*${person['Name']}* (_${person["Email"]}_) just signed up for an audition!\n` + 
 			(person["Where did you hear about us?"] ? 
