@@ -1,7 +1,7 @@
 import { MAILGUN } from '../env'
 
 import moment from 'moment'
-import 'moment-timezone'
+//import 'moment-timezone'
 import ical from 'ics'
 import axios from 'axios'
 import fs from 'fs'
@@ -22,8 +22,10 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 	var mailgun = require('mailgun-js')({apiKey: MAILGUN.API_KEY, domain: MAILGUN.DOMAIN})
 
 	let rightmoment = moment(event["Start Time"])
-	let date = rightmoment.tz('America/Los_Angeles').format("M/D/YYYY")
-	let time = rightmoment.tz('America/Los_Angeles').format("h:mm A")
+	//let date = rightmoment.tz('America/Los_Angeles').format("M/D/YYYY")
+	//let time = rightmoment.tz('America/Los_Angeles').format("h:mm A")
+	let date = "4/5/2019"
+	let time = "3:23 PM"
 
 	var options = {
 		eventName: `${type[0].toUpperCase() + type.slice(1)} for Raagapella`,
