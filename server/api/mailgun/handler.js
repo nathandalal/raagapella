@@ -96,6 +96,7 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 				SlackHandler.write(`Error writing email to *${person["Name"]}* (_${person["Email"]}_). When this happens, my overlord tells me to bring <@U0BFHB2RL> and <@U0BGMJK0F> in to resolve the problem.`)
 				reject({type: "mailgun error", error: error})
 			}
+			console.log(body)
 		})
 		resolve(data)
 	})
