@@ -96,7 +96,6 @@ module.exports.send = (person, event, type) => {
 				console.error(error)
 				return SlackHandler.write(`Error writing email to *${person["Name"]}* (_${person["Email"]}_). When this happens, my overlord tells me to bring <@U0BFHB2RL> and <@U0BGMJK0F> in to resolve the problem.`)
 			}
-			console.log(body)
 		})
 	})
 }
