@@ -97,8 +97,8 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 				reject({type: "mailgun error", error: error})
 			}
 			console.log(body)
+			resolve(data)
 		})
-		resolve(data)
 	})
 })
 
