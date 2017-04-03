@@ -86,17 +86,16 @@ module.exports.registerAudition = (auditionid, name, email, references) => new P
 	.then(airtabledone => {
 		console.log("Person added to airtable, now sending email confirmation and Slack confirmation message.")
 		let person = airtabledone[0].fields, audition = airtabledone[1].fields
-		return Promise.all([
-			SlackHandler.write(
-				`*${person['Name']}* (_${person["Email"]}_) just signed up for an audition!\n` + 
-				(person["Where did you hear about us?"] ? 
-					`They found out about us through ${person["Where did you hear about us?"].join(" and ")}.` :
-					"They didn't specify how they found out about us.")
-			),
-			MailgunHandler.send(person, audition, 'audition')
-		])
+
+		resolve(person) // go ahead and tell them the job is done, then send off Slack and emailing tasks
+		SlackHandler.write(
+			`*${person['Name']}* (_${person["Email"]}_) just signed up for an audition!\n` + 
+			(person["Where did you hear about us?"] ? 
+				`They found out about us through ${person["Where did you hear about us?"].join(" and ")}.` :
+				"They didn't specify how they found out about us.")
+		)
+		MailgunHandler.send(person, audition, 'audition')
 	})
-	.then(resolve)
 	.catch(reject)
 })
 
