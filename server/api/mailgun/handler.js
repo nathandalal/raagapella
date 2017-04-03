@@ -21,7 +21,7 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 	console.log(MAILGUN)
 	var mailgun = require('mailgun-js')({apiKey: MAILGUN.API_KEY, domain: MAILGUN.DOMAIN})
 
-	let rightmoment = moment(event["Start Time"])
+	let rightmoment = moment.utc(event["Start Time"])
 	let date = rightmoment.tz('America/Los_Angeles').format("M/D/YYYY")
 	let time = rightmoment.tz('America/Los_Angeles').format("h:mm A")
 
@@ -29,7 +29,7 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 		eventName: `${type[0].toUpperCase() + type.slice(1)} for Raagapella`,
 		filename: `${type}.ics`,
 		dtstart: rightmoment.toDate(),
-		dtend: moment(rightmoment).add(event["Duration (Minutes)"], "minutes").toDate(),
+		dtend: moment.utc(rightmoment).add(event["Duration (Minutes)"], "minutes").toDate(),
 		location: event["Location"],
 		organizer: {
 			name: 'Stanford Raagapella',
