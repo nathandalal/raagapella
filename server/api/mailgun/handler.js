@@ -18,12 +18,10 @@ module.exports.validate = (email) => new Promise((resolve, reject) => {
 })
 
 module.exports.send = (person, event, type) => new Promise((resolve, reject) => {
-	console.log(MAILGUN)
 	var mailgun = require('mailgun-js')({apiKey: MAILGUN.API_KEY, domain: MAILGUN.DOMAIN})
-	console.log(mailgun)
+
 	let rightmoment = moment.utc(event["Start Time"])
-	console.log(moment.utc)
-	console.log(rightmoment)
+
 	let date = rightmoment.tz('America/Los_Angeles').format("M/D/YYYY")
 	let time = rightmoment.tz('America/Los_Angeles').format("h:mm A")
 
@@ -40,7 +38,6 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 	}
 
 	ical.createEvent(options, null, (err, filepath) => {
-		console.log("aqui en ical")
 		if(err) reject({type: "ical formatting error", error: err})
 		person["First Name"] = 
 		(person["Name"].indexOf(' ') !== -1) ?
@@ -62,7 +59,7 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 					`We've included a calendar event attachment so you don't forget your ${type}.\n` +
 					`If you have any other questions, you can contact:\n` +
 					`	• Ronald Tep → (864) 202-2733 (email cc'ed)\n` +
-					`	• Kuhan Jeyapragasan → (650) 284-6611 (email cc'ed)\n\n` +
+					`	• Connor Holland → (858) 703-7741 (email cc'ed)\n\n` +
 
 					`Looking forward to seeing you!\n` +
 					`Stanford Raagapella`,
@@ -86,17 +83,16 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 					`</p>` +
 					`<ul>` + 
 						`<li>Ronald Tep → (864) 202-2733 (email cc'ed)</li>` +
-						`<li>Kuhan Jeyapragasan → (650) 284-6611 (email cc'ed)</li>` +
+						`<li>Connor Holland → (858) 703-7741 (email cc'ed)</li>` +
 					`</ul>` +
 
 					`Looking forward to seeing you!<br>` +
 					`Stanford Raagapella`,
 			attachment: filepath
 		}
-		//if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Kuhan Jeyapragasan <kuhanj@stanford.edu>", "Nathan Dalal <nathanhd@stanford.edu>"]
+		if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Connor Holland <hollandc@stanford.edu>"]
 
 		mailgun.messages().send(data, function (error, body) {
-			console.log("aqui en mailgun")
 			if(error) {
 				SlackHandler.write(`Error writing email to *${person["Name"]}* (_${person["Email"]}_). When this happens, my overlord tells me to bring <@U0BFHB2RL> and <@U0BGMJK0F> in to resolve the problem.`)
 				reject({type: "mailgun error", error: error})

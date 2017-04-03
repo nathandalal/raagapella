@@ -56,10 +56,12 @@ export default class Auditions extends Component {
 				    <tbody>
 					{this.state.slots.map(slot => {
 						let data = slot.fields
+						let time = moment(data["Start Time"])
+						
 						return (
 							<tr key={JSON.stringify(data)}>
-								<td style={{textAlign: "center"}}>{moment(data["Start Time"]).format("M/D/YYYY")}</td>
-								<td style={{textAlign: "center"}}>{moment(data["Start Time"]).format("h:mm a")}</td>
+								<td style={{textAlign: "center"}}>{time.format("M/D/YYYY")}</td>
+								<td style={{textAlign: "center"}}>{time.format("h:mm a")}</td>
 								<td style={{textAlign: "center"}}>
 									{data["Person"] ?
 									<span style={{color:"#d43f3a"}}>Taken</span> :
@@ -96,7 +98,10 @@ export default class Auditions extends Component {
 			    		{this.state.formSuccess? 
 						<div className="alert alert-success text-center">
 							<strong>Submitted!</strong> You'll receive an email confirmation soon.
-						</div> : ""}
+						</div> : 
+						<div className="alert alert-warning text-center">
+							<strong>Please Note:</strong> Audition times are listed in <strong>your timezone</strong>.
+						</div>}
 			      		<h1 className="text-center">
 			        		Auditions
 			      		</h1>

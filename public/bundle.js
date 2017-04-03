@@ -43011,18 +43011,20 @@
 							null,
 							this.state.slots.map(function (slot) {
 								var data = slot.fields;
+								var time = (0, _moment2.default)(data["Start Time"]);
+
 								return _react2.default.createElement(
 									'tr',
 									{ key: JSON.stringify(data) },
 									_react2.default.createElement(
 										'td',
 										{ style: { textAlign: "center" } },
-										(0, _moment2.default)(data["Start Time"]).format("M/D/YYYY")
+										time.format("M/D/YYYY")
 									),
 									_react2.default.createElement(
 										'td',
 										{ style: { textAlign: "center" } },
-										(0, _moment2.default)(data["Start Time"]).format("h:mm a")
+										time.format("h:mm a")
 									),
 									_react2.default.createElement(
 										'td',
@@ -43095,7 +43097,22 @@
 									'Submitted!'
 								),
 								' You\'ll receive an email confirmation soon.'
-							) : "",
+							) : _react2.default.createElement(
+								'div',
+								{ className: 'alert alert-warning text-center' },
+								_react2.default.createElement(
+									'strong',
+									null,
+									'Please Note:'
+								),
+								' Audition times are listed in ',
+								_react2.default.createElement(
+									'strong',
+									null,
+									'your timezone'
+								),
+								'.'
+							),
 							_react2.default.createElement(
 								'h1',
 								{ className: 'text-center' },
@@ -64043,7 +64060,7 @@
 			value: function renderSignup() {
 				var _this2 = this;
 
-				if ((0, _moment2.default)().isBefore('2016-09-29')) return "Check back later for callbacks!";
+				//if(moment().isBefore('2016-09-29')) return "Check back later for callbacks!"
 				return _react2.default.createElement(
 					'div',
 					null,
