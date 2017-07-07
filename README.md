@@ -16,3 +16,5 @@ Clone this repository or download a .zip version of this repo to gain acces to t
 npm install
 npm run dev
 ```
+
+Contact me for environmental variable access.
