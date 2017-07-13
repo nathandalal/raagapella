@@ -5,8 +5,8 @@
   "private": "true",
   "main": "server.js",
   "engines": {
-    "node": "6.5.0",
-    "npm": "3.10.3"
+    "node": "8.1.4",
+    "npm": "5.2.0"
   },
   "scripts": {
     "express-server": "./node_modules/.bin/babel-node server/server.js",
