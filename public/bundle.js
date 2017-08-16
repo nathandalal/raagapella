@@ -42849,7 +42849,7 @@
 		//spring -> apr is 3
 		[_moment2.default.utc(new Date(currentYear, 3, 1)), _moment2.default.utc(new Date(currentYear, 3, 15))],
 		//fall -> sep is 8, oct is 9
-		[_moment2.default.utc(new Date(currentYear, 7, 1)), _moment2.default.utc(new Date(currentYear, 9, 1))]];
+		[_moment2.default.utc(new Date(currentYear, 8, 1)), _moment2.default.utc(new Date(currentYear, 9, 1))]];
 
 		var auditionsActive = false;
 

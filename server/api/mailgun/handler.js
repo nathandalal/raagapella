@@ -87,7 +87,10 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 					`Stanford Raagapella`,
 			attachment: filepath
 		}
-		if(process.env.NODE_ENV == 'production') data.cc = IMPORTANT_PEOPLE.map(person => `${person.name} <${person.email}>`)
+		if(process.env.NODE_ENV == 'production') {
+			data.cc = IMPORTANT_PEOPLE.map(person => `${person.name} <${person.email}>`)
+			data.cc.push(`Raagapella Business <business@raagapella.com>`)
+		}
 
 		mailgun.messages().send(data, function (error, body) {
 			if(error) {
