@@ -1,4 +1,4 @@
-import { MAILGUN } from '../env'
+import { MAILGUN, IMPORTANT_PEOPLE } from '../env'
 
 import moment from 'moment'
 import 'moment-timezone'
@@ -55,8 +55,8 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 
 					`We've included a calendar event attachment so you don't forget your ${type}.\n` +
 					`If you have any other questions, you can contact:\n` +
-					`	• Ronald Tep → (864) 202-2733 (email cc'ed)\n` +
-					`	• Connor Holland → (858) 703-7741 (email cc'ed)\n\n` +
+					`	• ${IMPORTANT_PEOPLE[0].name} → ${IMPORTANT_PEOPLE[0].phone} (email cc'ed)\n` +
+					`	• ${IMPORTANT_PEOPLE[1].name} → ${IMPORTANT_PEOPLE[1].phone} (email cc'ed)\n\n` +
 
 					`Looking forward to seeing you!\n` +
 					`Stanford Raagapella`,
@@ -79,15 +79,15 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 						`If you have any other questions, you can contact:<br>` +
 					`</p>` +
 					`<ul>` + 
-						`<li>Ronald Tep → (864) 202-2733 (email cc'ed)</li>` +
-						`<li>Connor Holland → (858) 703-7741 (email cc'ed)</li>` +
+						`<li>${IMPORTANT_PEOPLE[0].name} → ${IMPORTANT_PEOPLE[0].phone} (email cc'ed)</li>` +
+						`<li>${IMPORTANT_PEOPLE[1].name} → ${IMPORTANT_PEOPLE[1].phone} (email cc'ed)</li>` +
 					`</ul>` +
 
 					`Looking forward to seeing you!<br>` +
 					`Stanford Raagapella`,
 			attachment: filepath
 		}
-		if(process.env.NODE_ENV == 'production') data.cc = ["Ronald Tep <rtep@stanford.edu>", "Connor Holland <hollandc@stanford.edu>"]
+		if(process.env.NODE_ENV == 'production') data.cc = IMPORTANT_PEOPLE.map(person => `${person.name} <${person.email}>`)
 
 		mailgun.messages().send(data, function (error, body) {
 			if(error) {
