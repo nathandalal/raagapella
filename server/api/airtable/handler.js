@@ -5,6 +5,15 @@ let base = new Airtable({ apiKey: AIRTABLE.API_KEY }).base(AIRTABLE.BASE)
 import SlackHandler from '../slack/handler'
 import MailgunHandler from '../mailgun/handler'
 
+module.exports.checkAuditionsActive = () => new Promise((resolve, reject) => {
+	base('Turn Auditions On').select({
+    	view: "Turn Auditions On"
+	}).firstPage((error, records) => {
+			if(error) resolve(false)
+			resolve(records[0].fields.Here)
+	})
+})
+
 module.exports.getRoster = () => new Promise((resolve, reject) => {
 	base('Members').select({
     	view: "Current Members"

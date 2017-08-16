@@ -34,7 +34,12 @@ var availableRoutes = [
         routename: '/alumroster',
         methods: ["GET"],
         description: "Gets the Raagapella alumni, their voice parts, and their images."
-    }
+    },
+    {
+        routename: '/auditionsactive',
+        methods: ["GET"],
+        description: "True or false based on a button to turn auditions on in Airtable."
+    },
 ]
 
 router.get('/', (req, res) => {
@@ -92,6 +97,12 @@ router.get(availableRoutes[3].routename, (req, res) => {
 router.get(availableRoutes[4].routename, (req, res) => {
     AirtableHandler.getAlumRoster()
     .then(people => res.send(people))
+    .catch(e => internalServerError(res, e))
+})
+
+router.get(availableRoutes[5].routename, (req, res) => {
+    AirtableHandler.checkAuditionsActive()
+    .then(answer => res.send(answer))
     .catch(e => internalServerError(res, e))
 })
 

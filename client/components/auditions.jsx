@@ -28,6 +28,9 @@ export default class Auditions extends Component {
 		axios.get('/api/auditions').then(response => {
 			this.setState({ slots: response.data })
 		})
+
+		axios.get('/api/auditionsactive')
+		.then(({data}) => this.setState({auditionsActive: data}))
 	}
 
 	createSignupModal(slotid, event) {
@@ -35,7 +38,7 @@ export default class Auditions extends Component {
 	}
 
 	renderSignup() {
-		let auditionsActive = areAuditionsActive()
+		let { auditionsActive } = this.state
 		return (
 			<div>
 				{auditionsActive ? <div className="alert alert-info text-center">

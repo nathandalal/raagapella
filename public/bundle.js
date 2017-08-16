@@ -42839,27 +42839,21 @@
 
 	var _moment2 = _interopRequireDefault(_moment);
 
+	var _axios = __webpack_require__(239);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports.areAuditionsActive = function () {
-		var now = (0, _moment2.default)(new Date());
-		var currentYear = now.year();
+		_axios2.default.get('/api/auditionsactive').then(function (_ref) {
+			var data = _ref.data;
 
-		var validDateRanges = [
-		//spring -> apr is 3
-		[_moment2.default.utc(new Date(currentYear, 3, 1)), _moment2.default.utc(new Date(currentYear, 3, 15))],
-		//fall -> sep is 8, oct is 9
-		[_moment2.default.utc(new Date(currentYear, 8, 1)), _moment2.default.utc(new Date(currentYear, 9, 1))]];
-
-		var auditionsActive = false;
-
-		validDateRanges.forEach(function (dateTuple) {
-			if (now.isAfter(dateTuple[0]) && now.isBefore(dateTuple[1])) {
-				auditionsActive = true;
-			}
+			console.log(data);
+			return data;
+		}).catch(function (e) {
+			return console.error(e);
 		});
-
-		return auditionsActive;
 	};
 
 /***/ },
@@ -42933,6 +42927,11 @@
 			_axios2.default.get('/api/auditions').then(function (response) {
 				_this.setState({ slots: response.data });
 			});
+
+			_axios2.default.get('/api/auditionsactive').then(function (_ref) {
+				var data = _ref.data;
+				return _this.setState({ auditionsActive: data });
+			});
 			return _this;
 		}
 
@@ -42946,7 +42945,8 @@
 			value: function renderSignup() {
 				var _this2 = this;
 
-				var auditionsActive = (0, _index.areAuditionsActive)();
+				var auditionsActive = this.state.auditionsActive;
+
 				return _react2.default.createElement(
 					'div',
 					null,
