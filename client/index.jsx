@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
-import Homepage from './components/homepage'
-import Auditions from './components/auditions'
-import Callbacks from './components/callbacks'
+import Homepage from './components/homepage.jsx'
+import Auditions from './components/auditions.jsx'
+import Callbacks from './components/callbacks.jsx'
 
 ReactDOM.render(
     <Router history={browserHistory}>

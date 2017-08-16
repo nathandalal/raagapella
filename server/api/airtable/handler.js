@@ -56,7 +56,7 @@ module.exports.getCallbacks = () => new Promise((resolve, reject) => {
 	})
 })
 
-module.exports.registerAudition = (auditionid, name, email, references) => new Promise((resolve, reject) => {
+module.exports.registerAudition = (auditionid, name, email, phone, references, auditiontime = "undefined") => new Promise((resolve, reject) => {
 	console.log(`Registering ${name} (${email}) for an audition.`)
 	checkIfPersonExists(name, email)
 	.then(person => {
@@ -74,7 +74,7 @@ module.exports.registerAudition = (auditionid, name, email, references) => new P
 			return reject({errorString: "Please enter a valid email address."})
 		} else { 
 			console.log("Email address is valid, now adding person to Airtable.")
-			return createPerson(name, email, references)
+			return createPerson(name, email, phone, references)
 		}
 	})
 	.then(person => {
@@ -91,6 +91,8 @@ module.exports.registerAudition = (auditionid, name, email, references) => new P
 		resolve(person)
 		SlackHandler.write(
 			`*${person['Name']}* (_${person["Email"]}_) just signed up for an audition!\n` + 
+			`Their timeslot is at ${auditiontime}.\n` +
+			`You can call them at ${phone}.\n` +
 			(person["Where did you hear about us?"] ? 
 				`They found out about us through ${person["Where did you hear about us?"].join(" and ")}.` :
 				"They didn't specify how they found out about us.")
@@ -101,7 +103,7 @@ module.exports.registerAudition = (auditionid, name, email, references) => new P
 })
 
 module.exports.registerCallback = (callbackid, name, email) => new Promise((resolve, reject) => {
-	verifyPerson(name, email)
+	verifyPersonForCallback(name, email)
 	.then(person => {
 		if(!person) reject({errorString: "Unauthorized to sign up for a callback."})
 		return Promise.all([
@@ -127,10 +129,11 @@ let addPersonToBase = (basename, recordid, personid) => new Promise((resolve, re
 	})
 })
 
-let createPerson = (name, email, references) => new Promise((resolve, reject) => {
+let createPerson = (name, email, phone, references) => new Promise((resolve, reject) => {
 	let newPerson = {
 		"Name": name,
-		"Email": email
+		"Email": email,
+		"Phone": phone
 	}
 	if(references) newPerson["Where did you hear about us?"] = references
 
@@ -140,7 +143,7 @@ let createPerson = (name, email, references) => new Promise((resolve, reject) =>
 	})
 })
 
-let verifyPerson = (name, email) => new Promise((resolve, reject) => {
+let verifyPersonForCallback = (name, email) => new Promise((resolve, reject) => {
 	base('Auditioners').select({
     	view: "Main View"
 	}).firstPage((error, records) => {

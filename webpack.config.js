@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './client/index.js',
+    entry: './client/index.jsx',
     output: {
         path: './public/',
         filename: 'bundle.js'
@@ -7,9 +7,13 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /.js$/,
+                test: /.jsx?$/,
                 loader: 'babel',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.json$/,
+                loader: 'json'
             }
         ]
     }

@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 import axios from 'axios'
 import moment from 'moment'
 
-import Header from './header'
+import Header from './header.jsx'
 import { getPersonImageUrl, areAuditionsActive } from '../utils/index'
 
 export default class Homepage extends Component {

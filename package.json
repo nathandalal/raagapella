@@ -43,6 +43,7 @@
     "babel-loader": "^6.2.4",
     "babel-watch": "^2.0.2",
     "dotenv": "^2.0.0",
+    "json-loader": "^0.5.7",
     "react-bootstrap": "^0.30.3",
     "react-select": "^1.0.0-beta14",
     "webpack": "^1.13.1"

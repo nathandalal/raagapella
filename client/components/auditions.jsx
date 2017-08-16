@@ -5,12 +5,14 @@ import Select from 'react-select'
 import { Table, Button } from 'react-bootstrap'
 
 import axios from 'axios'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
-import Header from './header'
-import FormModal from './form-modal'
+import Header from './header.jsx'
+import FormModal from './form-modal.jsx'
 
-export default class Callbacks extends Component {
+import { areAuditionsActive } from '../utils/index'
+
+export default class Auditions extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -19,11 +21,12 @@ export default class Callbacks extends Component {
 
 			//form modal data
 			name: "",
-			email: ""
+			email: "",
+			references: [],
+			phone: ""
 		}
-		axios.get('/api/callbacks').then(response => {
+		axios.get('/api/auditions').then(response => {
 			this.setState({ slots: response.data })
-
 		})
 	}
 
@@ -32,27 +35,34 @@ export default class Callbacks extends Component {
 	}
 
 	renderSignup() {
-		//if(moment().isBefore('2016-09-29')) return "Check back later for callbacks!"
+		let auditionsActive = areAuditionsActive()
 		return (
 			<div>
-				<div className="alert alert-info text-center">
-					<strong>Quick Note:</strong> All callbacks are hosted in <a href={this.state.slots[0].fields["Google Maps Location"]}><span style={{textDecoration:"underline"}}>{this.state.slots[0].fields["Location"]}</span></a> and are {this.state.slots[0].fields["Duration (Minutes)"]} minutes long.
-				</div>
-				<Table striped bordered condensed hover>
+				{auditionsActive ? <div className="alert alert-info text-center">
+					<strong>Quick Note:</strong> All auditions are hosted in <a href={this.state.slots[0].fields["Google Maps Location"]}><span style={{textDecoration:"underline"}}>{this.state.slots[0].fields["Location"]}</span></a> and are {this.state.slots[0].fields["Duration (Minutes)"]} minutes long.<br/><br />
+					Please arrive 5 minutes early with a 30-60 second vocal piece that plays to your strengths!<br />
+					We want to see your ability as best as possible. Thank you!
+				</div> :
+				<div className="alert alert-warning text-center">
+					Auditions are closed right now. Please check back at the start of the next school year!
+				</div>}
+				{auditionsActive ? <Table striped bordered condensed hover>
 				    <thead>
 						<tr>
 							<th style={{textAlign: "center"}}>Date</th>
-							<th style={{textAlign: "center"}}>Time</th>
+							<th style={{textAlign: "center"}}>Time (PST)</th>
 							<th style={{textAlign: "center"}}>Book Your Audition</th>
 						</tr>
 				    </thead>
 				    <tbody>
 					{this.state.slots.map(slot => {
 						let data = slot.fields
+						let time = moment(data["Start Time"])
+						
 						return (
 							<tr key={JSON.stringify(data)}>
-								<td style={{textAlign: "center"}}>{moment(data["Start Time"]).format("M/D/YYYY")}</td>
-								<td style={{textAlign: "center"}}>{moment(data["Start Time"]).format("h:mm a")}</td>
+								<td style={{textAlign: "center"}}>{time.tz('America/Los_Angeles').format("dddd, M/D/YY")}</td>
+								<td style={{textAlign: "center"}}>{time.format("h:mm a")}</td>
 								<td style={{textAlign: "center"}}>
 									{data["Person"] ?
 									<span style={{color:"#d43f3a"}}>Taken</span> :
@@ -67,15 +77,16 @@ export default class Callbacks extends Component {
 						)
 					})}
 				    </tbody>
-				  </Table>
+				  </Table> : ""}
 			</div>
 		)
 	}
 
 	changeName(event) { this.setState({name:event.target.value})}
+	changePhone(event) { this.setState({phone:event.target.value})}
 	changeEmail(event) { this.setState({email:event.target.value})}
 	changeReferences(values) { this.setState({references:values}) }
-	notifyFormSuccess() { this.setState({formSuccess:true,name:"",email:''})}
+	notifyFormSuccess() { this.setState({formSuccess:true,name:"",email:'',references:[]})}
 
 	render() {
 		let modalClose = () => this.setState({ modalShow: false })
@@ -91,14 +102,17 @@ export default class Callbacks extends Component {
 							<strong>Submitted!</strong> You'll receive an email confirmation soon.
 						</div> : ""}
 			      		<h1 className="text-center">
-			        		Callbacks
+			        		Auditions
 			      		</h1>
+			      		<h3 className="text-center">
+			      			Raagapella is an <u>all-gender</u> South Asian themed a cappella group.
+			      		</h3>
 			      		<center>
-			      			<h4>Select from the following timeslots!</h4>
+			      			<h4>Select from the following timeslots! We're dying to listen to you!</h4>
 			      			<div>
 			      				{this.state.slots ? 
 			      				this.renderSignup() :
-			      				<span>Loading callback timeslots...</span>}
+			      				<span>Loading audition timeslots...</span>}
 			      			</div>
 			      		</center>
 			    	</div>
@@ -106,10 +120,10 @@ export default class Callbacks extends Component {
 			  	<FormModal 
 			  		show={this.state.modalShow} onHide={modalClose} 
 			  		currentSlot={this.state.slots ? this.state.slots.find(x => x.id == this.state.selectedId) : undefined}
-			  		name={this.state.name} email={this.state.email}
-			  		changeName={this.changeName.bind(this)} changeEmail={this.changeEmail.bind(this)}
+			  		name={this.state.name} email={this.state.email} references={this.state.references} phone={this.state.phone}
+			  		changeName={this.changeName.bind(this)} changeEmail={this.changeEmail.bind(this)} changeReferences={this.changeReferences.bind(this)} changePhone={this.changePhone.bind(this)}
 			  		notifyFormSuccess={this.notifyFormSuccess.bind(this)}
-			  		type="callback" />
+			  		type="audition" />
 			</div>
 		)
 	}
