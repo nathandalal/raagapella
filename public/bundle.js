@@ -27187,7 +27187,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'video-container' },
-								_react2.default.createElement('iframe', { width: '560', height: '315', src: 'https://www.youtube.com/embed/2jdosaY897w', frameBorder: '0', allowFullScreen: true })
+								_react2.default.createElement('iframe', { width: '560', height: '315', src: 'https://www.youtube.com/embed/IMisrqUoxMA', frameBorder: '0', allowFullScreen: true })
 							)
 						)
 					)
@@ -27219,7 +27219,7 @@
 							' South Asian a cappella group. With a repertoire of Bollywood pop, traditional cultural music, and original fusion pieces, Raagapella has sung in venues ranging from dorms to stadiums including the Hollywood Bowl and has toured across the United States and India. Two-time winners of the National South Asian A Cappella Championship, the group has also received critical acclaim for its debut album Raags to Riches, and performed several times alongside composer A.R. Rahman and other stars of Indian film music.'
 						),
 						_react2.default.createElement('div', { style: { marginTop: '1em' } }),
-						_react2.default.createElement('img', { src: '/images/group-2015-2016.jpg', className: 'img img-responsive' })
+						_react2.default.createElement('img', { src: '/images/current-group.jpg', className: 'img img-responsive' })
 					)
 				);
 			}

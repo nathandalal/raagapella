@@ -26,7 +26,7 @@ export default class Homepage extends Component {
 		      		</h2>
 		      		<center>
 			      		<div className="video-container">
-			      			<iframe width="560" height="315" src="https://www.youtube.com/embed/2jdosaY897w" frameBorder="0" allowFullScreen />
+			      			<iframe width="560" height="315" src="https://www.youtube.com/embed/IMisrqUoxMA" frameBorder="0" allowFullScreen />
 			      		</div>
 		      		</center>
 		    	</div>
@@ -45,7 +45,7 @@ export default class Homepage extends Component {
 			        	Raagapella is Stanford University's <strong>all-gender</strong> South Asian a cappella group. With a repertoire of Bollywood pop, traditional cultural music, and original fusion pieces, Raagapella has sung in venues ranging from dorms to stadiums including the Hollywood Bowl and has toured across the United States and India. Two-time winners of the National South Asian A Cappella Championship, the group has also received critical acclaim for its debut album Raags to Riches, and performed several times alongside composer A.R. Rahman and other stars of Indian film music.
 			      	</p>
 			      	<div style={{marginTop:'1em'}}></div>
-			      	<img src="/images/group-2015-2016.jpg" className="img img-responsive" />
+			      	<img src="/images/current-group.jpg" className="img img-responsive" />
 			    </div>
 			 </div>
 		)
