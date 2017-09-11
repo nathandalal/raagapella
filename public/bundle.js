@@ -27157,11 +27157,17 @@
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Homepage).call(this, props));
 
 			_this.state = {};
-			_axios2.default.get('/api/roster').then(function (result) {
-				return _this.setState({ roster: result.data });
+			_axios2.default.get('/api/roster').then(function (_ref) {
+				var data = _ref.data;
+				return _this.setState({ roster: data });
 			});
-			_axios2.default.get('/api/alumroster').then(function (result) {
-				return _this.setState({ alumroster: result.data });
+			_axios2.default.get('/api/alumroster').then(function (_ref2) {
+				var data = _ref2.data;
+				return _this.setState({ alumroster: data });
+			});
+			_axios2.default.get('/api/auditionsactive').then(function (_ref3) {
+				var data = _ref3.data;
+				return _this.setState({ auditionsActive: data });
 			});
 			return _this;
 		}
@@ -27368,7 +27374,7 @@
 		}, {
 			key: 'renderAuditionsAreLive',
 			value: function renderAuditionsAreLive() {
-				if (!(0, _index.areAuditionsActive)()) return "";
+				if (!this.state.auditionsActive) return "";
 
 				return _react2.default.createElement(
 					'div',
@@ -42849,7 +42855,6 @@
 		_axios2.default.get('/api/auditionsactive').then(function (_ref) {
 			var data = _ref.data;
 
-			console.log(data);
 			return data;
 		}).catch(function (e) {
 			return console.error(e);

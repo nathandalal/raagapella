@@ -12,8 +12,9 @@ export default class Homepage extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {}
-		axios.get('/api/roster').then(result => this.setState({roster: result.data}))
-		axios.get('/api/alumroster').then(result => this.setState({alumroster: result.data}))
+		axios.get('/api/roster').then(({data}) => this.setState({roster: data}))
+		axios.get('/api/alumroster').then(({data}) => this.setState({alumroster: data}))
+		axios.get('/api/auditionsactive').then(({data}) => this.setState({auditionsActive: data}))
 	}
 
 	renderYoutubeVideo() {
@@ -134,7 +135,7 @@ export default class Homepage extends Component {
 	}
 
 	renderAuditionsAreLive() {
-		if(!areAuditionsActive()) return ""
+		if(!this.state.auditionsActive) return ""
 
 		return (
 			<div className="alert alert-success text-center">
