@@ -97,7 +97,7 @@ export default class Homepage extends Component {
 		let roster = this.state.alumroster
 		if(!roster) return  (
 			<div className="text-center">
-				Our alums take a very long time to get to practice. Please be patient!
+				Our alums take a very long time to get to practice. Please be patient.
 			</div>
 		)
 			
