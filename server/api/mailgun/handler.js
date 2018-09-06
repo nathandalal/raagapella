@@ -49,7 +49,8 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 					`Your ${type} is confirmed for ${date} at ${time}.\n\n` +
 					`We'll meet you at ${event["Location"]}.\n` +
 					`A Google Maps link is here for your convenience: ${event["Google Maps Location"]}\n` +
-					`Please arrive 5 minutes early with a 30-60 second vocal piece that plays to your strengths.\n\n` +
+					`We'll need you there 15 minutes early to check into your audition.\n` +
+					`Please arrive 15 minutes early with a 30-60 second vocal piece that plays to your strengths.\n\n` +
 
 					(type == "audition" ? "Also, before your audition, please let us know a little more about you at this link: http://bit.ly/RaagapellaAuditionInfo2016\n\n" : "") +
 
