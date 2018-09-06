@@ -1,4 +1,9 @@
-# Raagapella Website
+# How to Contribute
+
+All changes to the `master` branch are automatically deployed. In order to change something, please make a pull request on a new branch and these changes can be merged in by those with push access.
+If you need an explainer of the code keep reading below.
+
+# Explaining the Raagapella Website
 
 This website specifically contains information about the a cappella group Stanford Raagapella.
 
