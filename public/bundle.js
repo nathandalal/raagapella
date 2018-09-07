@@ -27193,7 +27193,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'video-container' },
-								_react2.default.createElement('iframe', { width: '560', height: '315', src: 'https://www.youtube.com/embed/IMisrqUoxMA', frameBorder: '0', allowFullScreen: true })
+								_react2.default.createElement('iframe', { width: '560', height: '315', src: 'https://www.youtube.com/embed/URWWfqMf2AI', frameBorder: '0', allowFullScreen: true })
 							)
 						)
 					)
@@ -27216,13 +27216,7 @@
 						_react2.default.createElement(
 							'p',
 							null,
-							'Raagapella is Stanford University\'s ',
-							_react2.default.createElement(
-								'strong',
-								null,
-								'all-gender'
-							),
-							' South Asian a cappella group. With a repertoire of Bollywood pop, traditional cultural music, and original fusion pieces, Raagapella has sung in venues ranging from dorms to stadiums including the Hollywood Bowl and has toured across the United States and India. Two-time winners of the National South Asian A Cappella Championship, the group has also received critical acclaim for its debut album Raags to Riches, and performed several times alongside composer A.R. Rahman and other stars of Indian film music.'
+							'Raagapella is Stanford University\'s South Asian focus a cappella group. Since 2002, the group has worked to unite audiences and encourage the appreciation of music from South Asia, sharing their own energetic interpretations in each of their performances and recordings. Stanford Raagapella has traveled throughout the US and India for competitions, showcases, and special performances, including several with A.R. Rahman. The group has released two albums to date, Raags to Riches and Raag Time. For contact, please email business@raagapella.com.'
 						),
 						_react2.default.createElement('div', { style: { marginTop: '1em' } }),
 						_react2.default.createElement('img', { src: '/images/current-group.jpg', className: 'img img-responsive' })
@@ -42978,7 +42972,7 @@
 						' minutes long.',
 						_react2.default.createElement('br', null),
 						_react2.default.createElement('br', null),
-						'Please arrive 5 minutes early with a 30-60 second vocal piece that plays to your strengths!',
+						'Please arrive 15 minutes early with a 30-60 second vocal piece that plays to your strengths!',
 						_react2.default.createElement('br', null),
 						'We want to see your ability as best as possible. Thank you!'
 					) : _react2.default.createElement(
