@@ -43,7 +43,7 @@ export default class Auditions extends Component {
 			<div>
 				{auditionsActive ? <div className="alert alert-info text-center">
 					<strong>Quick Note:</strong> Auditions are hosted in <a href={this.state.slots[0].fields["Google Maps Location"]}><span style={{textDecoration:"underline"}}>{this.state.slots[0].fields["Location"]}</span></a> and are {this.state.slots[0].fields["Duration (Minutes)"]} minutes long.<br/><br />
-					Please prepare an approximately one minute vocal solo (in any style) that showcases your strengths!<br />
+					We ask that you prepare an approximately one minute vocal solo (in any style) that showcases your strengths!<br />
 					For questions or concerns, email business@raagapella.com!
 				</div> :
 				<div className="alert alert-warning text-center">

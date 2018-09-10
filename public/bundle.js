@@ -42957,7 +42957,7 @@
 							null,
 							'Quick Note:'
 						),
-						' All auditions are hosted in ',
+						' Auditions are hosted in ',
 						_react2.default.createElement(
 							'a',
 							{ href: this.state.slots[0].fields["Google Maps Location"] },
@@ -42972,9 +42972,9 @@
 						' minutes long.',
 						_react2.default.createElement('br', null),
 						_react2.default.createElement('br', null),
-						'Please arrive 15 minutes early with a 30-60 second vocal piece that plays to your strengths!',
+						'We ask that you prepare an approximately one minute vocal solo (in any style) that showcases your strengths!',
 						_react2.default.createElement('br', null),
-						'We want to see your ability as best as possible. Thank you!'
+						'For questions or concerns, email business@raagapella.com!'
 					) : _react2.default.createElement(
 						'div',
 						{ className: 'alert alert-warning text-center' },
@@ -43117,7 +43117,7 @@
 									null,
 									'all-gender'
 								),
-								' South Asian themed a cappella group.'
+								' South Asian focus a cappella group.'
 							),
 							_react2.default.createElement(
 								'center',
@@ -43125,7 +43125,7 @@
 								_react2.default.createElement(
 									'h4',
 									null,
-									'Select from the following timeslots! We\'re dying to listen to you!'
+									'Select from the following timeslots!'
 								),
 								_react2.default.createElement(
 									'div',
