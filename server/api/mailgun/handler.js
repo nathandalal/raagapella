@@ -50,7 +50,7 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 					`We'll meet you at ${event["Location"]}.\n` +
 					`A Google Maps link is here for your convenience: ${event["Google Maps Location"]}\n` +
 					`We'll need you there 15 minutes early to check into your audition.\n` +
-					`Please arrive 15 minutes early with a 30-60 second vocal piece that plays to your strengths!\n\n` +
+					`Please prepare a 60 second vocal piece that demonstrates your strengths!\n\n` +
 
 					(type == "audition" ? "Also, before your audition, please let us know a little more about you at this link: http://bit.ly/RaagapellaAuditionInfo2016\n\n" : "") +
 
@@ -62,30 +62,41 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 					`Looking forward to seeing you!\n` +
 					`Stanford Raagapella`,
 
-			html: `<h3>Hey ${person["First Name"]}!</h3>` +
+			html: `<h3>Hi ${person["First Name"]}! </h3>` +
+
+					`<p>` +
+						"Thank you for signing up to audition with Stanford Raagapella! " +
+					`</p>` +
+					
+					`<h4>Scheduled ${type[0].toUpperCase() + type.slice(1)} Time</h4>` +
+					`<p>` +
+						`Your ${type} is scheduled for <strong>${date}</strong> at <strong>${time}</strong> in <strong>${event["Location"]}</strong> (<a href="${event["Google Maps Location"]}">Google Maps link</a>). <br>` +
+						"Please arrive <strong>15 minutes early</strong> to check in. <br>" +
+						"<br>" + 
+
+					`<h4>Information Form</h4>` +
+
+					`<p>` +
+						`Before your audition, please fill out this <a href="http://bit.ly/RaagapellaAuditionInfo2016">form</a> so that we can learn more about you! ` +
+					`</p>` +
+
 
 					`<h4>${type[0].toUpperCase() + type.slice(1)} Details</h4>` +
 					`<p>` +
-						`Your ${type} is confirmed for <strong>${date}</strong> at <strong>${time}</strong>.<br>` +
-						`We'll meet you at ${event["Location"]}. Here's a <a href="${event["Google Maps Location"]}">Google Maps link</a>.<br>` +
-						"We'll need you there <strong>15 minutes early</strong> to check into your audition." +
-						"Please arrive 15 minutes early with a <strong>30-60 second vocal piece</strong> that plays to your strengths!" +
-						"<br><br>" + 
-
-						(type == "audition" ? `Also, before your audition, please let us know a little more about you <a href="http://bit.ly/RaagapellaAuditionInfo2016">at this link</a>.` : "") +
-					`</p>` +
-
+						"The audition itself will take about <strong>15 minutes</strong>, and we ask that you prepare an approximately <strong>one minute vocal solo</strong> in any style showcasing your strengths. <br><br>" +
+						"We intend for auditions to provide an accurate and holistic evaluation of your musical and vocal ability. Among the things we consider are tone, intonation, clarity, and rhythmic accuracy." +
+					
 					`<h4>Other Logistics</h4>` +
 					`<p>` +
-						`We've included a calendar event attachment so you don't forget your ${type}.<br>` +
-						`If you have any other questions, you can contact:<br>` +
+						`A calendar event is attached for your convenience.<br><br>` +
+						`If you have any questions or concerns, please contact:<br>` +
 					`</p>` +
 					`<ul>` + 
 						`<li>${IMPORTANT_PEOPLE[0].name} → ${IMPORTANT_PEOPLE[0].phone} (email cc'ed)</li>` +
 						`<li>${IMPORTANT_PEOPLE[1].name} → ${IMPORTANT_PEOPLE[1].phone} (email cc'ed)</li>` +
 					`</ul>` +
 
-					`Looking forward to seeing you!<br>` +
+					`We look forward to seeing you!<br>` +
 					`Stanford Raagapella`,
 			attachment: filepath
 		}
