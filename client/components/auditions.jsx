@@ -42,9 +42,9 @@ export default class Auditions extends Component {
 		return (
 			<div>
 				{auditionsActive ? <div className="alert alert-info text-center">
-					<strong>Quick Note:</strong> All auditions are hosted in <a href={this.state.slots[0].fields["Google Maps Location"]}><span style={{textDecoration:"underline"}}>{this.state.slots[0].fields["Location"]}</span></a> and are {this.state.slots[0].fields["Duration (Minutes)"]} minutes long.<br/><br />
-					Please arrive 15 minutes early with a 30-60 second vocal piece that plays to your strengths!<br />
-					We want to see your ability as best as possible. Thank you!
+					<strong>Quick Note:</strong> Auditions are hosted in <a href={this.state.slots[0].fields["Google Maps Location"]}><span style={{textDecoration:"underline"}}>{this.state.slots[0].fields["Location"]}</span></a> and are {this.state.slots[0].fields["Duration (Minutes)"]} minutes long.<br/><br />
+					Please prepare an approximately one minute vocal solo (in any style) that showcases your strengths!<br />
+					For questions or concerns, email business@raagapella.com!
 				</div> :
 				<div className="alert alert-warning text-center">
 					Auditions are closed right now. Please check back at the start of the next school year!
@@ -108,10 +108,10 @@ export default class Auditions extends Component {
 			        		Auditions
 			      		</h1>
 			      		<h3 className="text-center">
-			      			Raagapella is an <u>all-gender</u> South Asian themed a cappella group.
+			      			Raagapella is an <u>all-gender</u> South Asian focus a cappella group.
 			      		</h3>
 			      		<center>
-			      			<h4>Select from the following timeslots! We're dying to listen to you!</h4>
+			      			<h4>Select from the following timeslots!</h4>
 			      			<div>
 			      				{this.state.slots ? 
 			      				this.renderSignup() :
