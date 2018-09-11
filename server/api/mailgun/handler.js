@@ -72,7 +72,6 @@ module.exports.send = (person, event, type) => new Promise((resolve, reject) => 
 					`<p>` +
 						`Your ${type} is scheduled for <strong>${date}</strong> at <strong>${time}</strong> in <strong>${event["Location"]}</strong> (<a href="${event["Google Maps Location"]}">Google Maps link</a>). <br>` +
 						"Please arrive <strong>15 minutes early</strong> to check in. <br>" +
-						"<br>" + 
 
 					`<h4>Information Form</h4>` +
 
