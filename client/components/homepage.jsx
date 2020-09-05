@@ -53,7 +53,7 @@ export default class Homepage extends Component {
 			        	For contact, please email business@raagapella.com.
 			      	</p>
 			      	<div style={{marginTop:'1em'}}></div>
-			      	<img src="images/current-group.jpg" className="img img-responsive" />
+			      	<img src="/images/Raag.jpg" className="img img-responsive" />
 			    </div>
 			 </div>
 		)
