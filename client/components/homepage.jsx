@@ -49,11 +49,11 @@ export default class Homepage extends Component {
 			        	their performances and recordings. Stanford Raagapella has traveled
 			        	throughout the US and India for competitions, showcases,
 			        	and special performances, including several with A.R. Rahman.
-			        	The group has released two albums to date, Raags to Riches and Raag Time.
+			        	The group has released three albums to date, Raagstars, Raags to Riches, and Raag Time.
 			        	For contact, please email business@raagapella.com.
 			      	</p>
 			      	<div style={{marginTop:'1em'}}></div>
-			      	<img src="/images/current-group.jpg" className="img img-responsive" />
+			      	<img src="/images/Raag.jpg" className="img img-responsive" />
 			    </div>
 			 </div>
 		)
