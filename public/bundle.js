@@ -27731,7 +27731,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'video-container' },
-								_react2.default.createElement('iframe', { width: '560', height: '315', src: 'https://www.youtube.com/embed/Wy2LVPngZqc', frameBorder: '0', allowFullScreen: true })
+								_react2.default.createElement('iframe', { width: '560', height: '315', src: 'https://www.youtube.com/watch?v=zBX6bzN1rh0', frameBorder: '0', allowFullScreen: true })
 							)
 						)
 					)
