@@ -14,7 +14,7 @@
     "webpack": "./node_modules/.bin/webpack --colors",
     "webpack-watch": "./node_modules/.bin/webpack -w --colors",
     "dev": "npm run webpack-watch & npm run express-dev-server",
-    "build": "npm run webpack && git add public/bundle.js",
+    "build": "npm run webpack",
     "start": "npm run express-server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "precommit-msg": "echo 'pre-commit frontend webpack build...' && exit 0"
