@@ -43,14 +43,7 @@ export default class Homepage extends Component {
 			        	About Us
 			      	</h2>
 			      	<p>
-			        	Raagapella is Stanford University's South Asian focus a cappella group.
-			        	Since 2002, the group has worked to unite audiences and encourage the appreciation
-			        	of music from South Asia, sharing their own energetic interpretations in each of
-			        	their performances and recordings. Stanford Raagapella has traveled
-			        	throughout the US and India for competitions, showcases,
-			        	and special performances, including several with A.R. Rahman.
-			        	The group has released three albums to date, Raagstars, Raags to Riches, and Raag Time.
-			        	For contact, please email business@raagapella.com.
+			        	Stanford Raagapella is Stanford’s all-gender South Asian focus a cappella group.  Since its founding in 2002, Raag has been creating music that explores everything including contemporary Bollywood, Indian classical music, and Western pop.  We take pride in bringing together audiences from around the world with our original musical arrangements.  In addition to singing on campus, Raag travels to perform at national competitions and live showcases around the country.  We have released three albums to date, which can be found on our Youtube and Spotify channels.
 			      	</p>
 			      	<div style={{marginTop:'1em'}}></div>
 			      	<img src="/images/Raag.jpg" className="img img-responsive" />
