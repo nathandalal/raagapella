@@ -23,7 +23,7 @@ export default class Homepage extends Component {
 				<div style={{marginTop:'1em'}}></div>
 		    	<div className="col-md-8 col-md-offset-2">
 		      		<h2 className="text-center">
-		        		Listen to us!
+		        		Audition for Stanford Raagapella at https://www.stanfordacappella.com/raag Listen to us! 
 		      		</h2>
 		      		<center>
 			      		<div className="video-container">
