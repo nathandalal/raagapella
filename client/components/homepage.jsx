@@ -43,7 +43,7 @@ export default class Homepage extends Component {
 			        	About Us
 			      	</h2>
 			      	<p>
-			        	AUDITION FOR RAAG AT https://www.stanfordacappella.com/raag 
+			        	AUDITION FOR RAAG at:  https://www.stanfordacappella.com/raag \n \n
 
 Stanford Raagapella is Stanford’s all-gender South Asian focus a cappella group.  Since its founding in 2002, Raag has been creating music that explores everything including contemporary Bollywood, Indian classical music, and Western pop.  We take pride in bringing together audiences from around the world with our original musical arrangements.  In addition to singing on campus, Raag travels to perform at national competitions and live showcases around the country.  We have released three albums to date, which can be found on our Youtube and Spotify channels.
 			      	</p>
