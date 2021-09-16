@@ -27,7 +27,7 @@ export default class Homepage extends Component {
 		      		</h2>
 		      		<center>
 			      		<div className="video-container">
-			      			<iframe width="560" height="315" src="https://www.youtube.com/embed/zBX6bzN1rh0" frameBorder="0" allowFullScreen />
+			      			<iframe width="560" height="315" src="https://www.youtube.com/watch?v=nORTURSlZhA" frameBorder="0" allowFullScreen />
 			      		</div>
 		      		</center>
 		    	</div>
