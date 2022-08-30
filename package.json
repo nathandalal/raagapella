@@ -37,7 +37,7 @@
     "ics": "^0.5.0",
     "mailgun-js": "^0.9.1",
     "moment": "^2.22.2",
-    "moment-timezone": "^0.5.21",
+    "moment-timezone": "^0.5.35",
     "mongoose": "^4.13.17",
     "pre-commit": "^1.2.2",
     "react": "^15.6.2",
